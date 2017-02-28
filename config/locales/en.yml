@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  title: "Manager Library"
+  title: "Online Library"
+  home_page: "Home page"
+  logo: "Logo"
+  home: "Home"
+  all: "All"
+  author: "Author"
+  book: "Book"
+  publisher: "Publisher"
+  signup: "Sign up"
+  login: "Log in"
+  footer_name_project: "Library Manager Project"
+  design_by: "design by"
+  my_name: "Nguyen Cao Cuong"
