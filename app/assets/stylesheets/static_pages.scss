@@ -1,0 +1,135 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin transition {
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
+@mixin box-shadow {
+  -webkit-box-shadow: 0 1px 2px rgba(25, 25, 25, 0.25) inset, -1px 1px #fff;
+  -moz-box-shadow: 0 1px 2px rgba(25, 25, 25, 0.25) inset, -1px 1px #fff;
+  box-shadow: 0 1px 2px rgba(25, 25, 25, 0.25) inset, -1px 1px #fff;
+}
+
+@mixin box-shadow-hover {
+  -webkit-box-shadow: 0 2px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6), 0 0 11px rgba(70, 100, 200, 0.7);
+  -moz-box-shadow: 0 2px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6), 0 0 11px rgba(70, 100, 200, 0.7);
+  box-shadow: 0 2px 4px -1px #a8a8a8 inset, 0 1px rgba(255, 255, 255, 0.6), 0 0 11px rgba(70, 100, 200, 0.7);
+}
+
+.menu-account {
+  height: 50px;
+  margin: auto;
+  ul {
+    height: 50px;
+    float: right;
+    display: flex;
+    align-items: center;
+    li {
+      display: inline-block;
+      margin-right: 25px;
+      a {
+        color: white;
+        &:hover {
+          text-decoration: none;
+          color: #059
+        }
+      }
+    }
+  }
+}
+
+.menu-main {
+  display: inline;
+  .navbar-collapse {
+    margin-top: 50px;
+  }
+  .logo {
+    max-width: 150px;
+    height: auto;
+    float: left;
+    margin-left: 70px;
+  }
+  ul {
+    margin-right: 100px;
+    li {
+      a {
+        font-family: WarHeliosCondC, Arial Narrow, Arial, sans-serif;
+        color: white;
+        font-size: 1.8em;
+        text-transform: uppercase;
+        &:hover {
+          background-color: transparent;
+          color: #059;
+          text-decoration: none;
+        }
+      }
+    }
+    .active a {
+      color: #059 !important;
+    }
+  }
+}
+
+#search-form {
+  position: absolute !important;
+  top: 60%;
+  height: 50px;
+  border-radius: 8px;
+  background-color: white;
+  z-index: 2;
+  padding: 0 !important;
+  @include transition;
+  @include box-shadow-hover;
+  > select {
+    width: 20%;
+    height: 100%;
+    padding-left: 5px;
+    vertical-align: top;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    border-radius: 3px 0px 0px 3px;
+    color: #999999;
+    font-size: 1.5em;
+    cursor: pointer;
+    @include transition;
+    &:hover {
+      border-color: #059;
+      @include box-shadow-hover;
+    }
+  }
+  > input {
+    width: calc(100% - (20% + 55px));
+    height: 100%;
+    padding-left: 10px;
+    font-size: 1.5em;
+    border: none;
+    color: #999999;
+    background-color: transparent;
+    vertical-align: top;
+    @include transition;
+    &:hover {
+      border-color: #059;
+      @include box-shadow-hover;
+    }
+  }
+  > button {
+    float: right;
+    height: 50px;
+    width: 50px;
+    border-radius: 0px 6px 6px 0px;
+    border: none;
+    background-color: transparent;
+    color: #999999;
+    vertical-align: top;
+    &:hover {
+      @include transition;
+      background-color: #CCCCCC;
+      @include box-shadow-hover;
+    }
+  }
+}
