@@ -22,7 +22,6 @@ gem "fog", "1.38.0"
 gem "will_paginate", "3.1.5"
 gem "bootstrap-will_paginate", "0.0.10"
 gem "figaro"
-gem "bootstrap-material-design"
 gem "bootstrap-sass"
 gem "config"
 

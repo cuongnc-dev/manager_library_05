@@ -1,1 +1,5 @@
 logo: "logo.png"
+max_name_user: 50
+max_name_email: 255
+max_phone: 14
+min_passwd: 6

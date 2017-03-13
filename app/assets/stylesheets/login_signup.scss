@@ -1,0 +1,96 @@
+.modal-dialog {
+  width: 400px !important;
+  margin: 0 auto !important;
+  .modal-content {
+    .modal-header {
+      padding: 5px !important;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: medium;
+      font-weight: bolder;
+      color: #059;
+    }
+    .modal-body {
+      > div {
+        text-align: center;
+        margin: auto;
+        padding-bottom: 20px;
+        width: 90%;
+        color: red;
+      }
+      > form {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        > p {
+          text-align: right;
+          color: red;
+          margin: 7px 0;
+        }
+      }
+      .checkbox {
+        cursor: pointer;
+        font-weight: normal;
+        &:hover {
+          color: #059;
+        }
+      }
+      input[type=submit] {
+        padding: 8px 50px;
+      }
+    }
+    .modal-footer {
+      text-align: center;
+      padding: 5px;
+      .flash-modal {
+        text-decoration: none;
+        margin: auto;
+        padding: 8px 30px;
+      }
+    }
+  }
+}
+
+.login-form {
+  .modal-footer {
+    padding: 10px 10px !important;
+    .forget-pw {
+      text-decoration: none;
+      color: black;
+      float: right;
+      &:hover {
+        color: #059;
+      }
+    }
+    .resend-email {
+      margin: auto;
+      padding: 8px 30px;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.forget-passwd {
+  .modal-footer {
+    padding: 10px 10px !important;
+    a {
+      text-decoration: none;
+      color: black;
+      float: left;
+      &:hover {
+        color: #059;
+      }
+    }
+  }
+}
+
+.activate-pw {
+  .modal-footer {
+    text-align: center;
+    > a {
+      text-decoration: none;
+    }
+  }
+}

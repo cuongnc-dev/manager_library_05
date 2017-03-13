@@ -7,17 +7,6 @@ jQuery(document).ready(function ($) {
     updateNavigation();
   });
 
-  if ($(window).width() <= 750) {
-    $("#cd-vertical-nav").css("right", "-30px");
-    $(document).mousemove(function () {
-      if (event.pageX >= $(window).width() - 30) {
-        $("#cd-vertical-nav").css("right", "20px")
-      } else {
-        $("#cd-vertical-nav").css("right", "-30px");
-      }
-    })
-  }
-
   navigationItems.on('click', function (event) {
     event.preventDefault();
     smoothScroll($(this.hash));
