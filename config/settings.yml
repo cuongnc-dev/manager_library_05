@@ -1,4 +1,5 @@
 logo: "logo.png"
+remember_me: 1
 max_name_user: 50
 max_name_email: 255
 max_phone: 14

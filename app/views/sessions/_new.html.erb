@@ -1,0 +1,36 @@
+<div class="modal-dialog login-form">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">
+        <small><span class="glyphicon glyphicon-remove"></span></small>
+      </button>
+      <h3 class="modal-title"><%= t "login" %></h3>
+    </div>
+    <div class="modal-body">
+      <% flash.each do |message_type, message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= form_for(:session, url: login_path, remote: true) do |f| %>
+        <div class="form-group has-float-label">
+          <%= f.email_field :email, class: "form-control", id: "email",
+            placeholder: t("enter_email") %>
+          <%= f.label :email, t("email"), for: "email" %>
+        </div>
+        <div class="form-group has-float-label">
+          <%= f.password_field :password, class: "form-control", id: "password",
+            placeholder: t("enter_password") %>
+          <%= f.label :password, t("passwd"), for: "passwd" %>
+        </div>
+        <%= f.label :remember_me, class: "checkbox" do %>
+          <%= f.check_box :remember_me %>
+          <span><%= t "remember_me" %></span>
+        <% end %>
+        <%= f.submit t("login"), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to t("forgot_passwd"), new_password_reset_path, remote: true,
+        class: "forget-pw" %>
+    </div>
+  </div>
+</div>

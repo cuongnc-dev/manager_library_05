@@ -1,0 +1,13 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-body">
+      <% flash.each do |key, message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to t("confirm"), root_path,
+        class: "btn btn-primary flash-modal" %>
+    </div>
+  </div>
+</div>

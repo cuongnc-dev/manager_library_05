@@ -155,40 +155,39 @@ footer {
       z-index: -1;
     }
   }
-}
-
-  .has-float-label .form-control::-webkit-input-placeholder {
+  .form-control {
+    &::-webkit-input-placeholder {
     opacity: .8;
     -webkit-transition: all .2s;
     transition: all .2s;
+    }
+    &:placeholder-shown:not(:focus)::-webkit-input-placeholder {
+      opacity: 0;
+    }
+    &:placeholder-shown:not(:focus)::-moz-placeholder {
+      opacity: 0;
+    }
+    &:placeholder-shown:not(:focus) + label {
+      font-size: 130%;
+      opacity: .6;
+      top: 8px;
+      font-weight: normal;
+    }
   }
+}
 
-  .has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
-    opacity: 0;
-  }
-
-  .has-float-label .form-control:placeholder-shown:not(:focus) + label {
-    font-size: 130%;
-    opacity: .6;
-    top: 8px;
-    font-weight: normal;
-  }
-
-  .input-group .has-float-label {
-    display: table-cell;
-  }
-
-  .input-group .has-float-label .form-control {
+.input-group .has-float-label {
+  display: table-cell;
+  .form-control {
     border-radius: 4px;
   }
-
-  .input-group .has-float-label:not(:last-child) .form-control {
+  &:not(:last-child) .form-control {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
   }
-
-  .input-group .has-float-label:not(:first-child) .form-control {
+  &:not(:first-child) .form-control {
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     margin-left: -1px;
   }
+}
