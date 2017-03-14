@@ -1,39 +1,43 @@
 $(document).ready(function () {
-  var search = $("#search-form");
-  var leftWidth = ($(window).width() - search.width()) / 2;
-  search.css({"left": leftWidth});
+  var centerVer = $(".modal").height() / 2 - 180;
+  var pathName = window.location.pathname;
   if ($(window).width() <= 700) {
     $(".logo").css("max-width", "100px");
     $(".menu-main ul li a").css("font-size", "1.3em");
   }
-  $(window).resize(function () {
-    location.reload();
+  $(".modal").each(function () {
+    this.style.setProperty("top", centerVer + "px", "important");
   });
   $(function () {
-    if ($(this).scrollTop() == 0) {
-      $("header").css("display", "none");
+    if (window.location.href.indexOf("password_resets") != -1 ||
+      window.location.href.indexOf("account_activations") != -1) {
+      $(".fixed-menu").fadeOut();
+      $(".activate-pw").modal("show");
+      $(".activate-pw").on('hidden.bs.modal', function () {
+        if (!$("#ajax-modal").hasClass("in")) {
+          window.location.href = "/"
+        }
+        $("#ajax-modal").on('hide.bs.modal', function () {
+          window.location.href = "/"
+        });
+      });
+    } else if (pathName == "/") {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= $(window).height()) {
+          $(".fixed-menu").fadeIn();
+        }
+        else {
+          $(".fixed-menu").fadeOut();
+          $("#search-form").parent().removeClass("search-form-modal");
+        }
+      });
+    } else {
+      $("header").fadeIn();
+      $("#search-form").parent().hide();
     }
-    $(window).scroll(function () {
-      if ($(this).scrollTop() >= $(window).height()) {
-        $("header").fadeIn();
-      }
-      else {
-        $("header").fadeOut();
-        $("#search-form").css({"position": "absolute", "top": "60%", "left": leftWidth});
-      }
-    });
   });
   $(".btn-search").click(function () {
-    $("#search-form").each(function () {
-      this.style.setProperty( "position", "fixed", "important" );
-    });
-  });
-  $("html").click(function (e) {
-    if (e.target.id !== "search-form" && $(e.target).parents("#search-form").length == 0
-      && $(e.target).parents(".fixed-menu").length == 0) {
-      $("#search-form").each(function () {
-        this.style.setProperty("position", "absolute", "important");
-      });
-    }
+    $("#search-form").parent().show();
+    $(".search-modal").addClass("search-form-modal");
   });
 });

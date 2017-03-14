@@ -8,10 +8,14 @@
     <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
     <%= render "layouts/shim" %>
   </head>
-
   <body>
     <%= render "layouts/header" %>
+    <%= render "shared/search_form" %>
     <%= yield %>
+    <div id="ajax-modal" class="modal fade"></div>
     <%= render "layouts/footer" %>
   </body>
+  <%= javascript_include_tag "main" %>
+  <%= javascript_include_tag "modernizr" %>
+  <%= javascript_include_tag "static_pages" %>
 </html>

@@ -39,51 +39,7 @@ img {
   min-height: 100%;
   position: relative;
   padding: 0 0 2em 0;
-}
-
-.cd-section {
   background-color: darkseagreen;
-}
-
-.cd-section h1, .cd-section p {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  bottom: auto;
-  right: auto;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -o-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  width: 90%;
-  max-width: 768px;
-  text-align: center;
-}
-
-.cd-section h1 {
-  color: white;
-  font-weight: 300;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-size: 1.25rem;
-}
-
-.cd-section p {
-  line-height: 1.6;
-}
-
-@media only screen and (min-width: 768px) {
-  .cd-section h1 {
-    font-size: 30px;
-    font-size: 1.875rem;
-  }
-
- .cd-section p {
-    font-size: 20px;
-    font-size: 1.25rem;
-    line-height: 2;
-  }
 }
 
 .cd-scroll-down {
@@ -98,7 +54,8 @@ img {
   bottom: 20px;
   width: 38px;
   height: 44px;
-  background: url("cd-arrow-bottom.svg") no-repeat center center;
+  background: url("cd-arrow-bottom.png") no-repeat center center;
+  background-size: cover;
 }
 
 /* No Touch devices */
@@ -141,19 +98,19 @@ img {
 .no-touch #cd-vertical-nav a span {
   float: right;
   display: inline-block;
-  -webkit-transform: scale(0.6);
-  -moz-transform: scale(0.6);
-  -ms-transform: scale(0.6);
-  -o-transform: scale(0.6);
-  transform: scale(0.6);
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  -o-transform: scale(0.7);
+  transform: scale(0.7);
 }
 
 .no-touch #cd-vertical-nav a:hover span {
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .no-touch #cd-vertical-nav a:hover .cd-label {
@@ -186,7 +143,6 @@ img {
   margin-right: 10px;
   padding: .4em .5em;
   color: white;
-  font-size: 20px;
   font-size: 1.1em;
   -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
   -moz-transition: -moz-transform 0.2s, opacity 0.2s;
