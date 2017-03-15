@@ -1,0 +1,19 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">
+        <small><span class="glyphicon glyphicon-remove"></span></small>
+      </button>
+      <h3 class="modal-title"><%= t "resend_email" %></h3>
+    </div>
+    <div class="modal-body">
+      <% flash.each do |key, message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to t("resend_email"), account_activations_path(email: @user.email),
+        method: :post, remote: true, class: "btn btn-primary resend-email" %>
+    </div>
+  </div>
+</div>

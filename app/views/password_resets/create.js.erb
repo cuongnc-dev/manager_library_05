@@ -1,0 +1,5 @@
+<% if @user %>
+  $('#ajax-modal').html('<%= j render "shared/flash_modal" %>');
+<% else %>
+  $('#ajax-modal').html('<%= j render "password_resets/new" %>');
+<% end %>

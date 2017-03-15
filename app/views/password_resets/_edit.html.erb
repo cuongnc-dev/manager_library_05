@@ -1,0 +1,36 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">
+        <small><span class="glyphicon glyphicon-remove"></span></small>
+      </button>
+      <h4 class="modal-title"><%= t "reset_pw" %></h4>
+    </div>
+    <div class="modal-body">
+      <% flash.each do |key, message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= form_for(@user, url: password_reset_path(params[:id]), remote: true) do |f| %>
+        <%= hidden_field_tag :email, @user.email %>
+        <% if @user.errors[:password].any? %>
+          <p><%= @user.errors[:password].first %></p>
+        <% end %>
+        <div class="form-group has-float-label">
+          <%= f.password_field :password, class: "form-control", id: "password",
+            placeholder: t("enter_password") %>
+          <%= f.label :password, t("passwd"), for: "passwd" %>
+        </div>
+        <% if @user.errors[:password_confirmation].any? %>
+          <p><%= @user.errors[:password_confirmation].first %></p>
+        <% end %>
+        <div class="form-group has-float-label">
+          <%= f.password_field :password_confirmation, class: "form-control",
+            id: "passwd_confirm", placeholder: t("enter_password_comfirm") %>
+          <%= f.label :password_confirmation, t("passwd_confirm"),
+            for: "passwd_confirm" %>
+        </div>
+        <%= f.submit t("update_pw"), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
