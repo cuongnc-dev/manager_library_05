@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if @user && @user.authenticate(params[:session][:password])
         if @user.activated?
           log_in @user
-          params[:session][:remember_me] == Settings.remember_me ? remember @user : forget @user
+          params[:session][:remember_me] == Settings.remember_me ? remember(@user) : forget(@user)
           format.html {redirect_to root_url}
         else
           @user.errors[:base] << t("account_not_activated")

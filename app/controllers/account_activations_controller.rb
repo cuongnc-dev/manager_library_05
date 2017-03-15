@@ -22,7 +22,7 @@ class AccountActivationsController < ApplicationController
       mess = t("activation_expired") + " "
       mess += t("new_email_activation") + " " + t("check_email")
       flash.now[:danger] = mess
-    elsif user && !user.activated? && user.authenticated?(:activation, params[:id]
+    elsif user && !user.activated? && user.authenticated?(:activation, params[:id])
       user.activate
       log_in user
       message = t("welcome") + " "

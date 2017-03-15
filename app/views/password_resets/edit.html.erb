@@ -1,0 +1,11 @@
+<section class="cd-section">
+  <%= render "static_pages/home" %>
+</section>
+<%= render "shared/search_form" %>
+<div class="modal fade activate-pw">
+  <% if @user.password_reset_expired? %>
+    <%= render "password_resets/new" %>
+  <% else %>
+    <%= render "password_resets/edit" %>
+  <% end %>
+</div>

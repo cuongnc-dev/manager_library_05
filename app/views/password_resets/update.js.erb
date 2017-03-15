@@ -1,0 +1,11 @@
+function showhideModal() {
+  $('.activate-pw').modal('hide');
+  $('#ajax-modal').modal('show');
+}
+<% if @user.errors.any? %>
+  $('#ajax-modal').html('<%= j render "password_resets/edit" %>');
+  showhideModal();
+<% else %>
+  $('#ajax-modal').html('<%= j render "shared/flash_modal" %>');
+  showhideModal();
+<% end %>

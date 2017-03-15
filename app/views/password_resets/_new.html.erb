@@ -1,0 +1,24 @@
+<div class="modal-dialog forget-passwd">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">
+        <small><span class="glyphicon glyphicon-remove"></span></small>
+      </button>
+      <h3 class="modal-title"><%= t "forgot_passwd" %></h3>
+    </div>
+    <div class="modal-body">
+      <div><%= flash[:danger] %></div>
+      <%= form_for(:password_reset, url: password_resets_path, remote: true) do |f| %>
+        <div class="form-group has-float-label">
+          <%= f.email_field :email, class: "form-control", id: "email",
+            placeholder: t("enter_email") %>
+          <%= f.label :email, t("email"), for: "email" %>
+        </div>
+        <%= f.submit t("reset_pw"), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to t("forgot_footer"), login_path, remote: true %>
+    </div>
+  </div>
+</div>
