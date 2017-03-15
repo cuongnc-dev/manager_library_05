@@ -1,0 +1,5 @@
+<% if !@user.valid? %>
+  $('#ajax-modal').html('<%= j render "users/new" %>');
+<% else %>
+  $('#ajax-modal').html('<%= j render "shared/flash_modal" %>');
+<% end %>

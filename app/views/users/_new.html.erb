@@ -1,0 +1,48 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">
+        <small><span class="glyphicon glyphicon-remove"></span></small>
+      </button>
+      <h3 class="modal-title"><%= t "signup" %></h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for(@user, remote: true) do |f| %>
+        <% if @user.errors[:name].any? %>
+          <p><%= @user.errors[:name].first %></p>
+        <% end %>
+        <div class="form-group has-float-label">
+          <%= f.text_field :name, class: "form-control", id: "name",
+            placeholder: t("enter_name") %>
+          <%= f.label :name, t("name"), for: "name" %>
+        </div>
+        <% if @user.errors[:email].any? %>
+          <p><%= @user.errors[:email].first %></p>
+        <% end %>
+        <div class="form-group has-float-label">
+          <%= f.email_field :email, class: "form-control", id: "email",
+            placeholder: t("enter_email") %>
+          <%= f.label :email, t("email"), for: "email" %>
+        </div>
+        <% if @user.errors[:password].any? %>
+          <p><%= @user.errors[:password].first %></p>
+        <% end %>
+        <div class="form-group has-float-label">
+          <%= f.password_field :password, class: "form-control", id: "passwd",
+             placeholder: t("enter_password") %>
+          <%= f.label :password, t("passwd"), for: "passwd" %>
+        </div>
+        <% if @user.errors[:password_confirmation].any? %>
+          <p><%= @user.errors[:password_confirmation].first %></p>
+        <% end %>
+        <div class="form-group has-float-label">
+          <%= f.password_field :password_confirmation, class: "form-control",
+            id: "passwd_confirm", placeholder: t("enter_password_confirm") %>
+          <%= f.label :password_confirmation, t("passwd_confirm"),
+            for: "passwd_confirm" %>
+        </div>
+        <%= f.submit t("signup_button"), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<% if @user.nil? || !@user.errors.any? %>
+  $('#ajax-modal').html('<%= j render "sessions/new" %>');
+<% else %>
+  $('#ajax-modal').html('<%= j render "account_activations/new" %>');
+<% end %>

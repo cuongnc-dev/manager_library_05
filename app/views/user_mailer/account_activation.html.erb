@@ -1,0 +1,10 @@
+<div class="email">
+  <p><%= t("hi") + " " + @user.name %>,</p>
+  <p><%= t "email_activation_body1" %></p>
+  <p><%= t "email_activation_body2" %></p>
+  <div>
+    <%= link_to t("activate"),
+      edit_account_activation_url(@user.activation_token, email: @user.email) %>
+  </div>
+  <p><%= t "email_activation_footer" %></p>
+</div>
