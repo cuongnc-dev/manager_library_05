@@ -20,19 +20,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  admin_title: "Administrator Manage Library"
   title: "Online Library"
   home_page: "Home page"
   logo: "Logo"
   home: "Home"
   all: "All"
+  user: "User"
   author: "Author"
   book: "Book"
   publisher: "Publisher"
+  request: "Request"
   signup: "Sign up"
   signup_button: "Create my account"
   forgot_passwd: "Forget password?"
   remember_me: "Remember me on this computer"
-  invalid_login: "Invalid email or password, try again."
+  not_admin: "You're not administrator."
+  invalid_login: "Invalid email or password, try again"
   account_not_activated: "Account not activated."
   forgot_footer: "Already a member?"
   reset_pw: "Reset Password"
@@ -48,10 +52,10 @@ en:
   passwd_confirm: "Password confirmation"
   address: "Address"
   phone: "Phone"
-  enter_name: "Enter your name..."
-  enter_email: "Enter your email..."
-  enter_password: "Enter password..."
-  enter_password_confirm: "Enter password confirmation..."
+  enter_name: "Enter your name"
+  enter_email: "Enter your email"
+  enter_password: "Password at least 6 character"
+  enter_password_confirm: "Enter password confirmation"
   welcome: "Welcome"
   account_activated: "Your account activated."
   activate: "Activate"
@@ -80,6 +84,7 @@ en:
     please ignore this email and your password will stay as it is."
   profile: "Profile"
   settings: "Settings"
+  search: "Search"
   activerecord:
     errors:
       models:
