@@ -1,0 +1,22 @@
+<div class="login-admin">
+  <div>
+    <ul class="login-logo">
+      <li><%= image_tag(Settings.logo, alt: t("logo")) %></b></li>
+      <li><%= image_tag(Settings.title_logo, alt: t("logo")) %></li>
+    </ul>
+    <% flash.each do |message_type, message| %>
+      <div><%= message %></div>
+    <% end %>
+    <%= form_for(:session, url: admin_login_path) do |f| %>
+      <%= f.email_field :email, class: "form-control",
+        placeholder: t("email") %>
+      <%= f.password_field :password, class: "form-control",
+        placeholder: t("passwd") %>
+      <%= f.label :remember_me, class: "checkbox" do %>
+        <%= f.check_box :remember_me %>
+        <span><%= t "remember_me" %></span>
+      <% end %>
+      <%= f.submit t("login"), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

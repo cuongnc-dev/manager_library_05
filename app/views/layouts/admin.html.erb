@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= favicon_link_tag Settings.logo %>
+    <title> <%= t "admin_title" %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application", media: "all",
+      "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application",
+      "data-turbolinks-track": "reload" %>
+    <%= render "layouts/shim"%>
+  </head>
+  <body>
+    <% if logged_in? %>
+      <%= render "layouts/admin_header" %>
+      <%= render "layouts/admin_sidebar" %>
+      <div class="main-content"
+        <%= yield %>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+  </body>
+</html>
