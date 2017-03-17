@@ -75,6 +75,7 @@ body {
       > li {
         > a {
           text-decoration: none;
+          padding: 20px;
           > ul {
             > li {
               display: inline;
@@ -190,4 +191,9 @@ footer {
     border-top-left-radius: 0;
     margin-left: -1px;
   }
+}
+
+.partial-home {
+  background: url("home_bg.jpg") no-repeat center center;
+  background-size: cover;
 }

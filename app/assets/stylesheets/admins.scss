@@ -1,0 +1,186 @@
+@mixin transition {
+  -webkit-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  transition: all 300ms linear;
+}
+
+.login-admin {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  vertical-align: middle;
+  background: url("login_admin_bg.png") no-repeat center center;
+  background-size: cover;
+  > div {
+    background: url("admin_login_form_bg.jpg") no-repeat center center;
+    background-size: cover;
+    max-width: 440px;
+    text-align: center;
+    padding: 20px 20px 0 20px;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 25px 15px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 7px;
+    .login-logo {
+      margin-bottom: 30px;
+      > li {
+        display: inline;
+        > img {
+          width: auto;
+          height: 80px;
+        }
+      }
+    }
+    > div {
+      margin: 10px;
+      color: white;
+      font-weight: bold;
+    }
+    > form {
+      padding: 0 45px;
+      > input {
+        text-align: center;
+        margin-bottom: 15px;
+        &:-moz-placeholder {
+          text-align: center;
+        }
+        &::-webkit-input-placeholder {
+          text-align: center;
+        }
+        &:-ms-input-placeholder {
+          text-align: center;
+        }
+      }
+      > input[type="submit"] {
+        padding: 5px 40px;
+        text-transform: uppercase;
+      }
+      > label {
+        color: white;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42),
+  0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  .logo {
+    background-color: #00bcd4;
+    text-align: center;
+    > a > img {
+      width: 250px;
+      height: auto;
+      margin: 20px 0;
+    }
+  }
+  .sidebar-wrapper {
+    position: relative;
+    height: calc(100% - 105px);
+    overflow: auto;
+    width: 270px;
+    z-index: 4;
+  }
+  .nav {
+    margin-top: 20px;
+    > li {
+      position: relative;
+      display: block;
+      > a {
+        margin: 10px 15px;
+        border-radius: 3px;
+        @include transition();
+        > i {
+          font-size: 24px;
+          float: left;
+          margin-right: 15px;
+          line-height: 30px;
+          width: 30px;
+          text-align: center;
+        }
+        > p {
+          margin: 0;
+          line-height: 30px;
+          font-size: 14px;
+        }
+      }
+    }
+    > li.active > a{
+      background-color: #00bcd4;
+      box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px
+      rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2);
+      color: white;
+    }
+  }
+}
+
+.main-content {
+  position: relative;
+  width: calc(100% - 270px);
+  min-height: 100%;
+  z-index: 2;
+  float: right;
+  overflow: auto;
+}
+
+.header-admin {
+  width: calc(100% - 270px);
+  margin-left: 270px;
+  background-color: #eeeeee;
+  .form-header {
+    width: 400px;
+    height: 30px;
+    z-index: 2;
+    border-radius: 4px;
+    background-color: white;
+    padding: 0 !important;
+    margin-top: 10px;
+    > select {
+      width: 20%;
+      height: 100%;
+      padding-left: 5px;
+      vertical-align: top;
+      text-align: center;
+      border: none;
+      background-color: transparent;
+      border-radius: 4px 0px 0px 4px;
+      color: #999999;
+      cursor: pointer;
+    }
+    > input {
+      width: calc(100% - (20% + 35px));
+      height: 100%;
+      padding-left: 10px;
+      border: none;
+      color: #999999;
+      background-color: transparent;
+      vertical-align: top;
+      &::-moz-placeholder {
+        opacity: 0.7;
+      }
+      &::-webkit-input-placeholder {
+        opacity: 0.7;
+      }
+    }
+    > button {
+      float: right;
+      height: 30px;
+      width: 30px;
+      border-radius: 0px 4px 4px 0px;
+      border: none;
+      background-color: transparent;
+      color: #999999;
+      vertical-align: top;
+      &:hover {
+        background-color: #CCCCCC;
+        @include transition();
+        color: white;
+      }
+    }
+  }
+}
