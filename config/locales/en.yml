@@ -30,6 +30,7 @@ en:
   author: "Author"
   book: "Book"
   publisher: "Publisher"
+  category: "Category"
   request: "Request"
   signup: "Sign up"
   signup_button: "Create my account"
@@ -85,6 +86,11 @@ en:
   profile: "Profile"
   settings: "Settings"
   search: "Search"
+  required: "Required"
+  choose_book_image: "Choose book image"
+  update: "Update"
+  updating: "Updating"
+  search_result_alert: "Sorry, no result found"
   activerecord:
     errors:
       models:
@@ -103,3 +109,54 @@ en:
             password_confirmation:
               blank: "Please input password confirmation."
               confirmation: "Password confirmation doesn't match"
+        book:
+          attributes:
+            title:
+              blank: "Please input book title"
+              too_long: "Please input maximum 255 character"
+            image:
+              blank: "Please choose cover image"
+            current:
+              blank: "Please input current book"
+            page_number:
+              blank: "Please input page number"
+            description:
+              blank: "Please input description"
+            author_id:
+              blank: "Please choose author"
+            category_id:
+              blank: "Please choose category"
+            publisher_id:
+              blank: "Please choose publisher"
+  books:
+    new_book: "New book"
+    edit_book: "Edit book"
+    book_not_found: "Book not found"
+    title: "Title"
+    description: "Description"
+    image: "Image"
+    current: "Current"
+    page_number: "Page number"
+    pages: "Pages"
+    add_new: "Add new book"
+    add_book_success: "Add book success"
+    add_book_fail: "Something wrong, please try again"
+    image_alt: "Cover image book"
+    update_success: "Update book successful"
+    update_fail: "Error, please check your input information"
+    list_book: "List book"
+    confirm_delete: "Are you sure delete this book?"
+    delete_success: "Delete success"
+    delete_fail: "Can't delete"
+    export: "Export to excel"
+    search_alert: "Sorry, no book found"
+    total_book_found: "Total books found:"
+
+  authors:
+    new_author: "New author"
+
+  publishers:
+    new_publisher: "New publisher"
+
+  categorys:
+    new_category: "New category"

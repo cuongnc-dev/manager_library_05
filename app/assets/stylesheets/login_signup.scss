@@ -1,51 +1,54 @@
-.modal-dialog {
-  width: 400px !important;
-  margin: 0 auto !important;
-  .modal-content {
-    .modal-header {
-      padding: 5px !important;
-      text-align: center;
-      text-transform: uppercase;
-      font-size: medium;
-      font-weight: bolder;
-      color: #059;
-    }
-    .modal-body {
-      > div {
+#ajax-modal {
+  top: 50px !important;
+  .modal-dialog {
+    width: 400px !important;
+    margin: 0 auto !important;
+    .modal-content {
+      .modal-header {
+        padding: 5px !important;
         text-align: center;
-        margin: auto;
-        padding-bottom: 20px;
-        width: 90%;
-        color: red;
+        text-transform: uppercase;
+        font-size: medium;
+        font-weight: bolder;
+        color: #059;
       }
-      > form {
-        width: 80%;
-        margin: 0 auto;
-        text-align: center;
-        > p {
-          text-align: right;
+      .modal-body {
+        > div {
+          text-align: center;
+          margin: auto;
+          padding-bottom: 20px;
+          width: 90%;
           color: red;
-          margin: 7px 0;
+        }
+        > form {
+          width: 80%;
+          margin: 0 auto;
+          text-align: center;
+          > p {
+            text-align: right;
+            color: red;
+            margin: 7px 0;
+          }
+        }
+        .checkbox {
+          cursor: pointer;
+          font-weight: normal;
+          &:hover {
+            color: #059;
+          }
+        }
+        input[type=submit] {
+          padding: 8px 50px;
         }
       }
-      .checkbox {
-        cursor: pointer;
-        font-weight: normal;
-        &:hover {
-          color: #059;
+      .modal-footer {
+        text-align: center;
+        padding: 5px;
+        .flash-modal {
+          text-decoration: none;
+          margin: auto;
+          padding: 8px 30px;
         }
-      }
-      input[type=submit] {
-        padding: 8px 50px;
-      }
-    }
-    .modal-footer {
-      text-align: center;
-      padding: 5px;
-      .flash-modal {
-        text-decoration: none;
-        margin: auto;
-        padding: 8px 30px;
       }
     }
   }
@@ -93,4 +96,8 @@
       text-decoration: none;
     }
   }
+}
+
+.modal-content, .btn {
+  border-radius: 0 !important;
 }

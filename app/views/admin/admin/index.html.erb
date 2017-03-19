@@ -1,0 +1,119 @@
+<div class="manage">
+  <div class="list">
+    <div>
+      <% flash.each do |key, message| %>
+        <span class="alert-<%= key %>"><%= message %></span>
+      <% end %>
+      <% case %>
+      <% when @books.present? %>
+        <strong>
+          <%= t("books.total_book_found") + ": " %> <%= @books.size %>
+        </strong>
+      </div>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="stt"><%= t "stt" %></th>
+            <th class="title"><%= t "books.title" %></th>
+            <th class="name"><%= t "author" %></th>
+            <th class="name"><%= t "category" %></th>
+            <th class="name"><%= t "publisher" %></th>
+            <th class="current"><%= t "books.current" %></th>
+            <th class="current"><%= t "books.pages" %></th>
+            <th class="description"><%= t "books.description" %></th>
+            <th class="image"><%= t "image" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "index", collection: @books, as: :books %>
+        </tbody>
+      </table>
+      <%= will_paginate @books %>
+    <% when @users.present? %>
+      <strong>
+        <%= t("users.total_user_found") + ": " %> <%= @users.size %>
+      </strong>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="stt"><%= t "stt" %></th>
+          <th class="title"><%= t "name" %></th>
+          <th class="name"><%= t "email" %></th>
+          <th class="name"><%= t "phone" %></th>
+          <th class="name"><%= t "address" %></th>
+          <th class="name"><%= t "role" %></th>
+          <th class="name"><%= t "users.activated" %></th>
+          <th class="image"><%= t "image" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "index", collection: @users, as: :user %>
+      </tbody>
+    </table>
+    <%= will_paginate @users %>
+    <% when @authors.present? %>
+      <strong>
+        <%= t("authors.total_author_found") + ": " %> <%= @authors.size %>
+      </strong>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="stt"><%= t "stt" %></th>
+          <th class="title"><%= t "authors.name" %></th>
+          <th class="name"><%= t "publishers.name" %></th>
+          <th class="name"><%= t "email" %></th>
+          <th class="name"><%= t "phone" %></th>
+          <th class="name"><%= t "address" %></th>
+          <th class="image"><%= t "image" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "index", collection: @authors, as: :author %>
+      </tbody>
+    </table>
+    <%= will_paginate @authors %>
+    <% when @categories.present? %>
+      <strong>
+        <%= t("categories.total_category_found") + ": " %> <%= @categories.size %>
+      </strong>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="stt"><%= t "stt" %></th>
+          <th><%= t "categories.name" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "index", collection: @categories, as: :category %>
+      </tbody>
+    </table>
+    <%= will_paginate @categories %>
+    <% when @publishers.present? %>
+      <strong>
+        <%= t("publishers.total_publisher_found") + ": " %> <%= @publishers.size %>
+      </strong>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="stt"><%= t "stt" %></th>
+          <th class="title"><%= t "name" %></th>
+          <th class="name"><%= t "email" %></th>
+          <th class="name"><%= t "phone" %></th>
+          <th class="name"><%= t "address" %></th>
+          <th class="image"><%= t "image" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "index", collection: @publishers, as: :publisher %>
+      </tbody>
+    </table>
+    <%= will_paginate @publishers %>
+    <% else %>
+      <p><%= t "search_result_alert" %></p>
+    <% end %>
+  </div>
+</div>

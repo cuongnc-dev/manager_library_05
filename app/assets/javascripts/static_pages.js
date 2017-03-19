@@ -1,13 +1,9 @@
 $(document).ready(function () {
-  var centerVer = $(".modal").height() / 2 - 180;
   var pathName = window.location.pathname;
   if ($(window).width() <= 700) {
     $(".logo").css("max-width", "100px");
     $(".menu-main ul li a").css("font-size", "1.3em");
   }
-  $(".modal").each(function () {
-    this.style.setProperty("top", centerVer + "px", "important");
-  });
   $(function () {
     if (window.location.href.indexOf("password_resets") != -1 ||
       window.location.href.indexOf("account_activations") != -1) {
