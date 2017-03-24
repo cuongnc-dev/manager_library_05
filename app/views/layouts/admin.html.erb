@@ -14,11 +14,13 @@
     <% if logged_in? %>
       <%= render "layouts/admin_header" %>
       <%= render "layouts/admin_sidebar" %>
-      <div class="main-content"
+      <div class="main-content">
         <%= yield %>
       </div>
+      <div id="admin-modal" class="modal fade"></div>
     <% else %>
       <%= yield %>
     <% end %>
   </body>
+  <%= javascript_include_tag "admin" %>
 </html>

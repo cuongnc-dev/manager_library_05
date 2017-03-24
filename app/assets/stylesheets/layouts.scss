@@ -10,6 +10,13 @@
   border-radius: 50px;
 }
 
+@mixin transition_label {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: -8px;
+  left: 12px;
+}
+
 body {
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
@@ -124,11 +131,8 @@ footer {
   }
 }
 
-@mixin transition_label {
-  -webkit-transition: all .2s;
-  transition: all .2s;
-  top: -8px;
-  left: 12px;
+.form-control {
+  border-radius: 0 !important;
 }
 
 .has-float-label {
@@ -156,6 +160,9 @@ footer {
       z-index: -1;
     }
   }
+  textarea {
+    resize: none;
+  }
   .form-control {
     &::-webkit-input-placeholder {
     opacity: .8;
@@ -179,17 +186,45 @@ footer {
 
 .input-group .has-float-label {
   display: table-cell;
-  .form-control {
-    border-radius: 4px;
-  }
-  &:not(:last-child) .form-control {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
+  &:not(:last-child) {
+    padding-right: 5px;
+    .form-control {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    }
   }
   &:not(:first-child) .form-control {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    margin-left: -1px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+}
+
+.form-group {
+  > div {
+    position: relative;
+    border-bottom: 2px solid #ccc;
+    cursor: pointer;
+    .form-control[readonly] {
+      border: none;
+      background-color: white !important;
+      cursor: pointer !important;
+    }
+    input[type="file"] {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      cursor: pointer !important;
+    }
+    &:hover {
+      border-bottom: 2px solid #059;
+      @include transition();
+    }
   }
 }
 

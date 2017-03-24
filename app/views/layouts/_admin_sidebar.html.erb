@@ -5,40 +5,40 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="active">
-        <a href="#">
+        <%= link_to admin_books_path do %>
           <i class="glyphicon glyphicon-book"></i>
           <p><%= t "book" %></p>
-        </a>
+        <% end %>
       </li>
       <li>
-        <a href="#">
+        <%= link_to admin_authors_path do %>
           <i class="glyphicon glyphicon-print"></i>
           <p><%= t "author" %></p>
-        </a>
+        <% end %>
       </li>
       <li>
-        <a href="#">
+        <%= link_to admin_publishers_path do %>
           <i class="glyphicon glyphicon-globe"></i>
           <p><%= t "publisher" %></p>
-        </a>
+        <% end %>
       </li>
       <li>
-        <a href="#">
+        <%= link_to admin_categories_path do %>
           <i class="glyphicon glyphicon-th"></i>
           <p><%= t "category" %></p>
-        </a>
+        <% end %>
       </li>
       <li>
-        <a href="#">
+        <%= link_to admin_users_path do %>
           <i class="glyphicon glyphicon-user"></i>
           <p><%= t "user" %></p>
-        </a>
+        <% end %>
       </li>
       <li>
-        <a href="#">
+        <%= link_to admin_requests_path do %>
           <i class="glyphicon glyphicon-send"></i>
           <p><%= t "request" %></p>
-        </a>
+        <% end %>
       </li>
     </ul>
   </div>

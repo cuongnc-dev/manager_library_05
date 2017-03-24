@@ -24,6 +24,7 @@ gem "bootstrap-will_paginate", "0.0.10"
 gem "figaro"
 gem "bootstrap-sass"
 gem "config"
+gem "axlsx_rails"
 
 group :development, :test do
   gem "byebug", platform: :mri

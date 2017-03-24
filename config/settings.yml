@@ -5,3 +5,11 @@ max_name_user: 50
 max_name_email: 255
 max_phone: 14
 min_passwd: 6
+per_page: 20
+title_limit: 25
+name_limit: 20
+description_limit: 40
+min_page_number: 10
+min_current_book: 0
+book_image_size: 150
+type_image_accept: "image/jpeg,image/gif,image/png"

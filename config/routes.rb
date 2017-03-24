@@ -13,7 +13,14 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
 
   namespace :admin do
-    root "admins#home"
-    get "login", to: "admins#login"
+    root "books#index"
+    get "login", to: "admin#new"
+    get "search", to: "admin#index"
+    resources :books
+    resources :authors
+    resources :publishers
+    resources :categories
+    resources :requests
+    resources :users
   end
 end
