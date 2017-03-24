@@ -82,13 +82,14 @@ body {
       > li {
         > a {
           text-decoration: none;
-          padding: 20px;
+          padding: 15px 20px;
           > ul {
             > li {
               display: inline;
               > img {
                 width: 30px;
-                height: auto;
+                height: 30px;
+                border-radius: 50%;
               }
             }
           }

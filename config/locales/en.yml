@@ -1,24 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   admin_title: "Administrator Manage Library"
   title: "Online Library"
@@ -87,10 +66,11 @@ en:
   settings: "Settings"
   search: "Search"
   required: "Required"
-  choose_book_image: "Choose book image"
   update: "Update"
   updating: "Updating"
+  export: "Export to excel"
   search_result_alert: "Sorry, no result found"
+  stt: "No."
   activerecord:
     errors:
       models:
@@ -128,6 +108,36 @@ en:
               blank: "Please choose category"
             publisher_id:
               blank: "Please choose publisher"
+        author:
+          attributes:
+            name:
+              blank: "Please input author name"
+              too_long: "Maximum name is 50 character"
+            avatar:
+              blank: "Please choose avatar"
+            email:
+              blank: "Please input author email"
+            phone:
+              blank: "Please input author phone"
+              too_long: "Maximum phone is 14 number"
+            address:
+              blank: "Please input author address"
+            publisher_id:
+              blank: "Please choose publisher"
+        publisher:
+          attributes:
+            name:
+              blank: "Please input publisher name"
+              too_long: "Maximum name is 50 character"
+            image:
+              blank: "Please choose image"
+            email:
+              blank: "Please input publisher email"
+            phone:
+              blank: "Please input publisher phone"
+              too_long: "Maximum phone is 14 number"
+            address:
+              blank: "Please input publisher address"
   books:
     new_book: "New book"
     edit_book: "Edit book"
@@ -138,6 +148,7 @@ en:
     current: "Current"
     page_number: "Page number"
     pages: "Pages"
+    choose_book_image: "Choose book image"
     add_new: "Add new book"
     add_book_success: "Add book success"
     add_book_fail: "Something wrong, please try again"
@@ -148,15 +159,64 @@ en:
     confirm_delete: "Are you sure delete this book?"
     delete_success: "Delete success"
     delete_fail: "Can't delete"
-    export: "Export to excel"
     search_alert: "Sorry, no book found"
     total_book_found: "Total books found:"
 
   authors:
     new_author: "New author"
+    author_not_found: "Author not found"
+    list_author: "List author"
+    name: "Author name"
+    choose_author_avatar: "Choose author avatar"
+    add_new: "Add new author"
+    image_alt: "Author avatar"
+    add_author_success: "Add author successful"
+    update_success: "Update author successful"
+    update_fail: "Error, please check your input information"
+    confirm_delete: "Are you sure delete this author?"
+    delete_success: "Delete author successful"
+    delete_fail: "Can't delete"
 
   publishers:
     new_publisher: "New publisher"
+    publisher_not_found: "Publisher not found"
+    list_publisher: "List category"
+    name: "Publisher name"
+    add_new: "Add new publisher"
+    choose_publisher_image: "Choose image"
+    add_publisher_success: "Add publisher successful"
+    update_success: "Update publisher successful"
+    update_fail: "Error, please check your input information"
+    confirm_delete: "Are you sure delete this publisher?"
+    delete_success: "Delete publisher successful"
+    delete_fail: "Can't delete"
 
-  categorys:
+  categories:
     new_category: "New category"
+    category_not_found: "Category not found"
+    id: "ID"
+    name: "Category name"
+    list_categories: "List category"
+    add_new: "Add new category"
+    add_category_success: "Add category successful"
+    update_success: "Update category successful"
+    update_fail: "Error, please check your input information"
+    confirm_delete: "Are you sure delete this category?"
+    delete_success: "Delete category successful"
+    delete_fail: "Can't delete"
+
+  users:
+    new_author: "New user"
+    author_not_found: "User not found"
+    list_user: "List user"
+    name: "User name"
+    choose_user_avatar: "Choose user avatar"
+    activated: "Activated"
+    add_new: "Add new user"
+    image_alt: "User avatar"
+    add_author_success: "Add user successful"
+    update_success: "Update user successful"
+    update_fail: "Error, please check your input information"
+    confirm_delete: "Are you sure delete this user?"
+    delete_success: "Delete user successful"
+    delete_fail: "Can't delete"

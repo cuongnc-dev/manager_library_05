@@ -1,0 +1,109 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">
+        <small><span class="glyphicon glyphicon-remove"></span></small>
+      </button>
+      <h3 class="modal-title"><%= t("books.edit_book") %></h3>
+    </div>
+    <div class="modal-body">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= form_for [:admin, @book], remote: true do |f| %>
+        <div class="col-md-4 picture">
+          <% if @book.errors[:image].any? %>
+            <p><%= @book.errors[:image].first %></p>
+          <% end %>
+          <div class="img-avatar bg">
+            <% if @book.image.present? %>
+              <%= image_tag @book.image, alt: t("books.image_alt"), id: "thumb" %>
+            <% else %>
+              <img id="thumb" />
+            <% end %>
+          </div>
+          <div class="form-group">
+            <div>
+              <%= text_field_tag "", nil, class: "form-control",
+                readonly: true, placeholder: t("books.choose_book_image") %>
+              <%= f.file_field :image, accept: Settings.type_image_accept,
+                class: "choose-book-img", onchange: "showMyImage(this)" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 info">
+          <% if @book.errors[:title].any? %>
+            <p><%= @book.errors[:title].first %></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.text_field :title, class: "form-control",
+              placeholder: t("required") %>
+            <%= f.label :title, t("books.title"), for: "book_title" %>
+          </div>
+          <div class="errors-group">
+            <% if @book.errors[:page_number].any? %>
+              <p><span><%= @book.errors[:page_number].first %></span></p>
+            <% end %>
+            <% if @book.errors[:current].any? %>
+              <p><span><%= @book.errors[:current].first %></span></p>
+            <% end %>
+          </div>
+          <div class="form-group input-group">
+            <span class="has-float-label">
+              <%= f.number_field :page_number, class: "form-control",
+                min: Settings.min_page_number, placeholder: t("required") %>
+              <%= f.label :page_number, t("books.page_number"),
+                for: "book_page_number" %>
+            </span>
+            <span class="has-float-label">
+              <%= f.number_field :current, class: "form-control",
+                min: Settings.min_current_book, placeholder: t("required") %>
+              <%= f.label :current, t("books.current"), for: "book_current" %>
+            </span>
+          </div>
+          <% if @book.errors[:description].any? %>
+            <p><%= @book.errors[:description].first %></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.cktext_area :description, class: "form-control",
+              id: "description", placeholder: t("required"),
+              ckeditor: {toolbar: 'booktoolbar'} %>
+            <%= f.label :description, t("books.desciption"), for: "description" %>
+          </div>
+          <% if @book.errors[:author_id].any? %>
+            <p><%= @book.errors[:author_id].first %></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.select :author_id,
+              options_for_select(@authors.collect{|a| [a.name, a.id]},
+              @book.author_id.present? ? @book.author_id : ""), {},
+              class: "form-control custom-select" %>
+            <label for="book_author_id"><%= t "author" %></label>
+          </div>
+          <% if @book.errors[:category_id].any? %>
+            <p><%= @book.errors[:category_id].first %></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.select :category_id,
+              options_for_select(@categories.collect{|c| [c.name, c.id]},
+              @book.category_id.present? ? @book.category_id : ""), {},
+              class: "form-control custom-select" %>
+            <label for="book_category_id"><%= t "category" %></label>
+          </div>
+          <% if @book.errors[:publisher_id].any? %>
+            <p><%= @book.errors[:publisher_id].first %></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.select :publisher_id,
+              options_for_select(@publishers.collect{|p| [p.name, p.id]},
+              @book.publisher_id.present? ? @book.publisher_id : ""), {},
+              class: "form-control custom-select" %>
+            <label for="book_publisher_id"><%= t "publisher" %></label>
+          </div>
+        </div>
+        <%= f.submit t("update"), id: "submit_book",
+          class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

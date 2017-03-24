@@ -1,0 +1,14 @@
+wb = xlsx_package.workbook
+wb.styles do |style|
+  header = style.add_style bg_color: "EFC376", alignment: {horizontal: :center,
+    vertical: :center}, sz: 12
+  wb.add_worksheet(name: "Books") do |sheet|
+    sheet.add_row ["ID", "Title", "Author", "Category", "Publisher",
+      "Current book", "Page number", "Description"], style: [header, header,
+      header, header, header, header, header, header]
+    @books.each do |book|
+      sheet.add_row [book.id, book.title, book.author_name, book.category_name,
+        book.publisher_name, book.current, book.page_number, book.description]
+    end
+  end
+end

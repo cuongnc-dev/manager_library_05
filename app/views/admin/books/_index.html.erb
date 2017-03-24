@@ -1,0 +1,20 @@
+<tr>
+  <td><%= col_serial book_counter %></td>
+  <td><%= title_limit_book book.title %></td>
+  <td><%= name_limit_book book.author_name %></td>
+  <td><%= name_limit_book book.category_name %></td>
+  <td><%= name_limit_book book.publisher_name %></td>
+  <td><%= book.current %></td>
+  <td><%= book.page_number %></td>
+  <td><%= raw description_limit book.description %></td>
+  <td>
+    <%= image_tag book.image, alt: t("books.image_alt") %>
+    <div class="edit-delete">
+      <%= link_to "", edit_admin_book_path(book), remote: true,
+        class: "glyphicon glyphicon-pencil"%>
+      <%= link_to "", admin_book_path(book), method: :delete,
+        data: {confirm: t("books.confirm_delete")},
+        class: "glyphicon glyphicon-remove delete"%>
+    </div>
+  </td>
+</tr>

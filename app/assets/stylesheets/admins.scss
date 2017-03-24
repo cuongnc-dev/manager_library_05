@@ -235,7 +235,7 @@
         font-weight: bolder;
         tr {
           .stt {
-            width: 50px;
+            width: 40px;
           }
           .title {
             width: 200px;
@@ -250,8 +250,7 @@
             width: calc(100% - 200px - 130px - 80px);
           }
           .image {
-            max-width: 150px;
-            max-height: 150px;
+            width: 150px;
           }
           th {
             text-align: center;
@@ -264,6 +263,10 @@
             position: relative;
             white-space: nowrap;
             cursor: pointer;
+            vertical-align: middle;
+            > img {
+              max-height: 100px;
+            }
             .edit-delete {
               display: none;
               height: 30px;
@@ -358,6 +361,21 @@
           }
           > span {
             text-align: right;
+          }
+        }
+      }
+      .button-group {
+        display: table;
+        width: 100%;
+        height: 40px;
+        > div {
+          display: table-cell;
+          > label {
+            font-weight: normal !important;
+            font-size: 16px;
+            line-height: 1.42857143;
+            text-align: center;
+            cursor: pointer;
           }
         }
       }
