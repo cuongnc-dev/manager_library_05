@@ -23,14 +23,11 @@ class Admin::BooksController < ApplicationController
 
   def create
     @book = Book.new book_params
-    respond_to do |format|
-      if @book.save
-        flash[:success] = t "books.add_book_success"
-        format.html {redirect_to admin_books_url}
-      else
-        format.html {render :new}
-        format.js
-      end
+    if @book.save
+      flash[:success] = t "books.add_book_success"
+      redirect_to admin_books_url
+    else
+      render :new
     end
   end
 
@@ -40,12 +37,9 @@ class Admin::BooksController < ApplicationController
   def update
     if @book.update_attributes book_params
       flash[:success] = t "books.update_success"
-      redirect_to  admin_books_url
+      redirect_to admin_books_url
     else
-      respond_to do |format|
-        flash.now[:danger] = t "books.update_fail"
-        format.js
-      end
+      render :edit
     end
   end
 

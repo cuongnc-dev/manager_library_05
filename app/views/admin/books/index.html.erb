@@ -1,0 +1,35 @@
+<div class="manage">
+  <div class="btn-head">
+    <%= link_to t("books.new_book"), new_admin_book_path, remote: true,
+      class: "btn btn-success btn-new" %>
+    <%= link_to t("export"), admin_books_path(format: :xlsx),
+      class: "btn btn-danger btn-export" %>
+  </div>
+  <div class="list">
+    <div>
+      <strong><%= t "books.list_book" %></strong>
+      <% flash.each do |key, message| %>
+        <span class="alert-<%= key %>"><%= message %></span>
+      <% end %>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="stt"><%= t "stt" %></th>
+          <th class="title"><%= t "books.title" %></th>
+          <th class="name"><%= t "author" %></th>
+          <th class="name"><%= t "category" %></th>
+          <th class="name"><%= t "publisher" %></th>
+          <th class="current"><%= t "books.current" %></th>
+          <th class="current"><%= t "books.pages" %></th>
+          <th class="description"><%= t "books.description" %></th>
+          <th class="image"><%= t "image" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "index", collection: @books, as: :book %>
+      </tbody>
+    </table>
+    <%= will_paginate @books %>
+  </div>
+</div>

@@ -19,7 +19,7 @@ $(document).ready(function () {
       });
     } else if (pathName == "/") {
       $(window).scroll(function () {
-        if ($(this).scrollTop() >= $(window).height()) {
+        if ($(this).scrollTop() >= ($(window).height() / 1.4)) {
           $(".fixed-menu").fadeIn();
         }
         else {
@@ -29,11 +29,7 @@ $(document).ready(function () {
       });
     } else {
       $("header").fadeIn();
-      $("#search-form").parent().hide();
+      $("#search-form").hide();
     }
-  });
-  $(".btn-search").click(function () {
-    $("#search-form").parent().show();
-    $(".search-modal").addClass("search-form-modal");
   });
 });
