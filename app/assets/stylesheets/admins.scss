@@ -131,7 +131,6 @@
   left: 270px;
   width: calc(100% - 270px);
   height: calc(100% - 50px);
-  z-index: 2;
   float: right;
   overflow: scroll;
 }
@@ -284,7 +283,7 @@
                   text-decoration: none;
                 }
               }
-              .delete {
+              .glyphicon-remove {
                 color: red;
               }
             }
@@ -296,7 +295,7 @@
               right: 0;
               display: table-cell;
               vertical-align: middle;
-          }
+            }
           }
         }
       }

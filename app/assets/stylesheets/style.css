@@ -39,7 +39,6 @@ img {
   min-height: 100%;
   position: relative;
   padding: 0 0 2em 0;
-  background-color: darkseagreen;
 }
 
 .cd-scroll-down {
@@ -127,7 +126,7 @@ img {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background-color: white;
+  background-color: #009ee2;
   -webkit-transition: -webkit-transform 0.2s, background-color 0.5s;
   -moz-transition: -moz-transform 0.2s, background-color 0.5s;
   transition: transform 0.2s, background-color 0.5s;
@@ -142,7 +141,7 @@ img {
   position: relative;
   margin-right: 10px;
   padding: .4em .5em;
-  color: white;
+  color: #009ee2;
   font-size: 1.1em;
   -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
   -moz-transition: -moz-transform 0.2s, opacity 0.2s;

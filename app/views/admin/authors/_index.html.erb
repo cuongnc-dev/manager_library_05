@@ -1,0 +1,18 @@
+<tr>
+  <td><%= col_serial book_counter %></td>
+  <td><%= name_limit author.name %></td>
+  <td><%= name_limit author.publisher_name %></td>
+  <td><%= name_limit author.email %></td>
+  <td><%= author.phone %></td>
+  <td><%= name_limit author.address %></td>
+  <td>
+    <%= image_tag author.avatar, alt: t("authors.image_alt") %>
+    <div class="edit-delete">
+      <%= link_to "", edit_admin_author_path(author), remote: true,
+        class: "glyphicon glyphicon-pencil"%>
+      <%= link_to "", admin_author_path(author), method: :delete,
+        data: {confirm: t("authors.confirm_delete")},
+        class: "glyphicon glyphicon-remove" %>
+    </div>
+  </td>
+</tr>

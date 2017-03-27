@@ -1,0 +1,76 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">
+        <small><span class="glyphicon glyphicon-remove"></span></small>
+      </button>
+      <h3 class="modal-title"><%= t("authors.new_author") %></h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for [:admin, @author], remote: true do |f| %>
+        <div class="col-md-4 picture">
+          <% if @author.errors[:avatar].any? %>
+            <p><span><%= @author.errors[:avatar].first %></span></p>
+          <% end %>
+          <div class="img-avatar bg">
+            <%= image_tag @author.avatar, alt: t("authors.image_alt"),
+              id: "thumb" %>
+          </div>
+          <div class="form-group">
+            <div>
+              <%= text_field_tag "", nil, class: "form-control",
+                readonly: true, placeholder: t("authors.choose_author_avatar") %>
+              <%= f.file_field :image, accept: Settings.type_image_accept,
+                class: "choose-book-img", onchange: "showMyImage(this)" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 info">
+          <% if @author.errors[:name].any? %>
+            <p><%= @author.errors[:name].first %></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.text_field :name, class: "form-control", id: "name",
+              placeholder: t("required") %>
+            <%= f.label :name, t("name"), for: "name" %>
+          </div>
+          <% if @author.errors[:email].any? %>
+            <p><span><%= @author.errors[:email].first %></span></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.email_field :email, class: "form-control", id: "email",
+              placeholder: t("required") %>
+            <%= f.label :email, t("email"), for: "email" %>
+          </div>
+          <% if @author.errors[:phone].any? %>
+            <p><span><%= @author.errors[:phone].first %></span></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.phone_field :phone, class: "form-control", id: "phone",
+              placeholder: t("required") %>
+            <%= f.label :phone, t("phone"), for: "phone" %>
+          </div>
+          <% if @author.errors[:address].any? %>
+            <p><span><%= @author.errors[:address].first %></span></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.text_field :address, class: "form-control", id: "address",
+              placeholder: t("required") %>
+            <%= f.label :address, t("address"), for: "address" %>
+          </div>
+          <% if @author.errors[:publisher_id].any? %>
+            <p><%= @author.errors[:publisher_id].first %></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.select "publisher_id",
+              options_for_select(@publishers.collect{|p| [p.name, p.id]},
+                @author.publisher_id.present? ? @author.publisher_id : ""), {},
+              class: "form-control custom-select" %>
+            <label for="author_publisher_id"><%= t "publisher" %></label>
+          </div>
+        </div>
+        <%= f.submit t("update"), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

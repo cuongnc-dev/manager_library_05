@@ -1,35 +1,42 @@
 $(document).ready(function () {
   var pathName = window.location.pathname;
-  if ($(window).width() <= 700) {
-    $(".logo").css("max-width", "100px");
-    $(".menu-main ul li a").css("font-size", "1.3em");
-  }
   $(function () {
-    if (window.location.href.indexOf("password_resets") != -1 ||
-      window.location.href.indexOf("account_activations") != -1) {
-      $(".fixed-menu").fadeOut();
-      $(".activate-pw").modal("show");
-      $(".activate-pw").on('hidden.bs.modal', function () {
-        if (!$("#ajax-modal").hasClass("in")) {
-          window.location.href = "/"
+    if (window.location.href.indexOf('password_resets') != -1 ||
+      window.location.href.indexOf('account_activations') != -1) {
+      $('.fixed-menu').fadeOut();
+      $('.activate-pw').modal('show');
+      $('.activate-pw').on('hidden.bs.modal', function () {
+        if (!$('#ajax-modal').hasClass('in')) {
+          window.location.href = '/'
         }
-        $("#ajax-modal").on('hide.bs.modal', function () {
-          window.location.href = "/"
+        $('#ajax-modal').on('hide.bs.modal', function () {
+          window.location.href = '/'
         });
       });
-    } else if (pathName == "/") {
+    } else if (pathName == '/') {
       $(window).scroll(function () {
         if ($(this).scrollTop() >= ($(window).height() / 1.4)) {
-          $(".fixed-menu").fadeIn();
+          $('.fixed-menu').fadeIn();
         }
         else {
-          $(".fixed-menu").fadeOut();
-          $("#search-form").parent().removeClass("search-form-modal");
+          $('.fixed-menu').fadeOut();
+          $('#search-form').parent().removeClass('search-form-modal');
         }
       });
     } else {
-      $("header").fadeIn();
-      $("#search-form").hide();
+      $('header').fadeIn();
+      $('#search-form').hide();
     }
   });
+  $('.btn-search').on('click', function(){
+    $('#search-form').show();
+  });
+  $('#custom_carousel').carousel({
+    interval: 4000
+  });
+  $('#custom_carousel').on('slide.bs.carousel', function(evt){
+    $('#custom_carousel .controls li.active').removeClass('active');
+    $('#custom_carousel .controls li:eq('+$(evt.relatedTarget).index()+')').
+      addClass('active');
+  })
 });

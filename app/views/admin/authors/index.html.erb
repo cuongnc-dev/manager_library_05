@@ -1,0 +1,33 @@
+<div class="manage">
+  <div class="btn-head">
+    <%= link_to t("authors.new_author"), new_admin_author_path, remote: true,
+      class: "btn btn-success btn-new" %>
+    <%= link_to t("export"), admin_authors_path(format: :xlsx),
+      class: "btn btn-danger btn-export" %>
+  </div>
+  <div class="list">
+    <div>
+      <strong><%= t "authors.list_author" %></strong>
+      <% flash.each do |key, message| %>
+        <span class="alert-<%= key %>"><%= message %></span>
+      <% end %>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="stt"><%= t "stt" %></th>
+          <th class="title"><%= t "authors.name" %></th>
+          <th class="name"><%= t "publishers.name" %></th>
+          <th class="name"><%= t "email" %></th>
+          <th class="name"><%= t "phone" %></th>
+          <th class="name"><%= t "address" %></th>
+          <th class="image"><%= t "image" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "index", collection: @authors, as: :author %>
+      </tbody>
+    </table>
+    <%= will_paginate @authors %>
+  </div>
+</div>

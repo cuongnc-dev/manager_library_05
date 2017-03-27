@@ -32,9 +32,9 @@ body {
   left: 0;
   width: 100%;
   z-index: 1;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.42);
   .header {
     background-color: white;
-    opacity: 0.8;
     padding-left: 120px;
     position: relative;
     min-height: 60px;
@@ -76,6 +76,12 @@ body {
       min-height: 60px;
       padding-top: 22px;
       text-transform: uppercase;
+    }
+    .navbar-left > li.active {
+      background-color: #009ee2;
+      > a {
+        color: white !important;
+      }
     }
     .navbar-right {
       margin-right: 50px;
@@ -161,9 +167,6 @@ footer {
       z-index: -1;
     }
   }
-  textarea {
-    resize: none;
-  }
   .form-control {
     &::-webkit-input-placeholder {
     opacity: .8;
@@ -232,4 +235,81 @@ footer {
 .partial-home {
   background: url("home_bg.jpg") no-repeat center center;
   background-size: cover;
+}
+
+.partial-book {
+  display: flex;
+  align-items: center;
+  > .container {
+    margin-top: 60px;
+    padding: 0;
+    border: 1px solid white;
+    #custom_carousel {
+      .carousel-inner {
+        background-color: #eeeeee;
+        padding-bottom: 20px;
+      }
+      .item {
+        padding: 20px;
+        .book-img {
+          display: table-cell;
+          float: left;
+          width: 40%;
+          text-align: center;
+          margin-right: 10px;
+          > img {
+            height: 400px;
+          }
+        }
+        .book-info {
+          display: table-cell;
+          .table-borderless {
+            tbody {
+              tr > th {
+                font-weight: bold;
+                vertical-align: middle;
+                white-space: nowrap;
+              }
+              tr > td {
+                text-align: justify;
+              }
+            }
+            td, th {
+              border: 0;
+            }
+          }
+        }
+      }
+      .controls {
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding:0;
+        margin:0;
+        text-align: center;
+        position: relative;
+        background:#ddd;
+        li {
+          display: table-cell;
+          max-width:90px;
+          cursor: pointer;
+          a {
+            display: block;
+            text-transform: uppercase;
+            background-color: transparent;
+          }
+          &:not(.active):hover {
+            background-color:#eee;
+            border-top:3px solid #009ee2;
+          }
+        }
+        .active {
+          background-color:#009ee2;
+          border-top:3px solid #009ee2;
+          a {
+            color: white;
+          }
+        }
+      }
+    }
+  }
 }
