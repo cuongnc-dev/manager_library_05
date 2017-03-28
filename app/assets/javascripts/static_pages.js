@@ -8,27 +8,24 @@ $(document).ready(function(){
       window.location.href.indexOf('account_activations') != -1){
       $('.fixed-menu').fadeOut();
       $('.activate-pw').modal('show');
-      $('.activate-pw').on('hidden.bs.modal', function (){
-        if (!$('#ajax-modal').hasClass('in')) {
+      $('.activate-pw').on('hidden.bs.modal', function(){
+        if (!$('#ajax-modal').hasClass('in')){
           window.location.href = '/'
         }
-        $('#ajax-modal').on('hide.bs.modal', function (){
+        $('#ajax-modal').on('hide.bs.modal', function(){
           window.location.href = '/'
         });
       });
     } else if (pathName == '/') {
       $(window).scroll(function () {
-        if ($(this).scrollTop() >= ($(window).height() / 1.4)) {
+        if ($(this).scrollTop() >= ($(window).height() / 1.4)){
           $('.fixed-menu').fadeIn();
-        }
-        else {
+        }  else {
           $('.fixed-menu').fadeOut();
-          $('#search-form').parent().removeClass('search-form-modal');
         }
       });
     } else {
-      $('header').fadeIn();
-      $('#search-form').hide();
+      $('.fixed-menu').fadeIn();
     }
   });
   $('.btn-search').on('click', function(){
@@ -41,9 +38,9 @@ $(document).ready(function(){
     $('#custom_carousel .controls li.active').removeClass('active');
     $('#custom_carousel .controls li:eq('+$(evt.relatedTarget).index()+')').
       addClass('active');
-  })
+  });
   $(function(){
-    $('[data-toggle='tooltip']').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
   });
   $(document).on('mousemove', function(e){
     left = e.clientX;
@@ -70,5 +67,8 @@ $(document).ready(function(){
   }, function(){
     clearTimeout(timer);
     $('.' + id).fadeOut();
+  });
+  $(document).on('click', '.transparent, .details-close', function(){
+    $('.book-detail').fadeOut();
   });
 });
