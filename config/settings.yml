@@ -10,6 +10,7 @@ per_page_book: 24
 title_limit_book: 20
 name_limit_book: 15
 description_limit: 25
+info_description_limit: 300
 home_description_limit: 500
 title_limit: 25
 name_limit: 20

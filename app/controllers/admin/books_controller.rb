@@ -13,7 +13,7 @@ class Admin::BooksController < ApplicationController
   end
 
   def index
-    @books = Book.list_book_newest.paginate page: params[:page],
+    @books = Book.list_newest_book.paginate page: params[:page],
       per_page: Settings.per_page
     respond_to do |format|
       format.html

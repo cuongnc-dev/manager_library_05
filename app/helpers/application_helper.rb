@@ -27,6 +27,10 @@ module ApplicationHelper
     description.truncate Settings.description_limit
   end
 
+  def info_description_limit description
+    description.truncate Settings.info_description_limit
+  end
+
   def col_serial counter
     counter + Settings.one
   end
