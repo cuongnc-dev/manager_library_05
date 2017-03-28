@@ -88,7 +88,7 @@ body {
       > li {
         > a {
           text-decoration: none;
-          padding: 15px 20px;
+          padding: 20px;
           > ul {
             > li {
               display: inline;
@@ -99,6 +99,9 @@ body {
               }
             }
           }
+        }
+        .dropdown-toggle {
+          padding: 15px;
         }
       }
     }
@@ -354,7 +357,7 @@ footer {
     display: none;
     width: 700px;
     height: 300px;
-    z-index: 999;
+    z-index: 111;
     background-color: white;
     padding: 10px;
     border-color: #ccc;
@@ -400,6 +403,120 @@ footer {
       font-size: 30px;
       font-weight: bold;
       color: red;
+    }
+  }
+}
+
+.book-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  display: none;
+  .transparent {
+    width: 35%;
+    height: 100%;
+    float: left;
+    background-color: black;
+    opacity: 0.3;
+  }
+  .details {
+    position: relative;
+    width: 65%;
+    height: 100%;
+    float: right;
+    overflow-y: scroll;
+    background-color: white;
+    box-shadow: -10px 0 5px rgba(0, 0, 0, 0.42);
+    .details-header {
+      text-align: center;
+      h3 {
+        color: #059;
+        font-weight: bold;
+      }
+    }
+    .details-close {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #ccc;
+    }
+    .details-body {
+      padding: 10px;
+      margin-top: 20px;
+      .details-img {
+        float: left;
+        width: 300px;
+        height: auto;
+        text-align: center;
+        > img {
+          width: 240px;
+          height: auto;
+        }
+      }
+      .details-info {
+        float: right;
+        width: calc(100% - 300px);
+        table {
+          font-size: 17px;
+          tbody {
+            tr {
+              > th {
+                width: 100px;
+                height: 40px;
+                padding: 0 5px 10px 5px;
+                font-weight: bold;
+                white-space: nowrap;
+                line-height: 17px;
+              }
+              > td {
+                width: 380px;
+                padding: 0 5px 10px 5px;
+                line-height: 17px;
+              }
+            }
+          }
+          td, th {
+            border: 0;
+          }
+        }
+      }
+    }
+    .details-description {
+      padding: 10px 30px;
+      ul > li > a {
+        padding: 3px 15px;
+        h5 {
+          font-size: 17px;
+          font-weight: bold;
+        }
+      }
+      p {
+        text-indent: 20px;
+        text-align: justify;
+      }
+      .tab-content {
+        padding: 10px 0;
+        #comment {
+          p {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            a {
+              text-transform: lowercase;
+              font-style: italic;
+              font-weight: bold;
+              &:hover {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,0 +1,17 @@
+<tr>
+  <td><%= col_serial publisher_counter %></td>
+  <td><%= name_limit_publisher publisher.name %></td>
+  <td><%= name_limit publisher.email %></td>
+  <td><%= publisher.phone %></td>
+  <td><%= description_limit publisher.address %></td>
+  <td class="image">
+    <%= image_tag publisher.image, alt: t("publishers.image_alt") %>
+    <div class="edit-delete">
+      <%= link_to "", edit_admin_publisher_path(publisher), remote: true,
+        class: "glyphicon glyphicon-pencil"%>
+      <%= link_to "", admin_publisher_path(publisher), method: :delete,
+        data: {confirm: t("publishers.confirm_delete")},
+        class: "glyphicon glyphicon-remove" %>
+    </div>
+  </td>
+</tr>

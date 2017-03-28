@@ -45,10 +45,9 @@ class PasswordResetsController < ApplicationController
           @user.errors.add(:password_confirmation,
             t("activerecord.errors.models.user.attributes.password_confirmation.confirmation"))
         end
-        format.html { render :edit }
+        format.html {render :edit}
         format.js
-      when
-        @user.update_attributes user_params
+      when @user.update_attributes(user_params)
         log_in @user
         @user.update_attribute(:reset_digest, nil)
         flash.now[:success] = t "pw_reset_success"

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         if @user.activated?
           log_in @user
           params[:session][:remember_me] == Settings.remember_me ? remember(@user) : forget(@user)
-          format.html { redirect_to root_url }
+          format.html {redirect_to root_url}
         else
           @user.errors[:base] << t("account_not_activated")
           mess = t "account_not_activated"
