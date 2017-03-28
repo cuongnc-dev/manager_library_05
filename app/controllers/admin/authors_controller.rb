@@ -12,7 +12,7 @@ class Admin::AuthorsController < ApplicationController
 
   def index
     respond_to do |format|
-      @authors = Author.list_newest.paginate page: params[:page],
+      @authors = Author.list_newest_author.paginate page: params[:page],
         per_page: Settings.per_page
       format.html
       format.xlsx

@@ -1,0 +1,26 @@
+<div class="manage">
+  <div class="btn-head">
+    <%= link_to t("categories.new_category"), new_admin_category_path, remote: true,
+      class: "btn btn-success btn-new" %>
+  </div>
+  <div class="list">
+    <div>
+      <strong><%= t "categories.list_categories" %></strong>
+      <% flash.each do |key, message| %>
+        <span class="alert-<%= key %>"><%= message %></span>
+      <% end %>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="stt"><%= t "stt" %></th>
+          <th><%= t "categories.name" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "index", collection: @categories, as: :category %>
+      </tbody>
+    </table>
+    <%= will_paginate @categories %>
+  </div>
+</div>

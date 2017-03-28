@@ -21,6 +21,16 @@ class Book < ApplicationRecord
   delegate :name, to: :author, prefix: true
   delegate :name, to: :publisher, prefix: true
 
-  scope :list_book_newest, -> {order "created_at desc"}
-  scope :search_book_by_title, -> title {where "title like ?", "%#{title}%"}
+  scope :list_newest_book, -> {order created_at: :desc}
+  scope :list_newest_limit, -> limit {order(created_at: :desc).limit(limit)}
+  scope :search_book_by_title, -> search {where "title like ?", "%#{search}%"}
+  scope :search_book_by_author, -> search do
+    joins(:author).where "authors.name like ?", "%#{search}%"
+  end
+  scope :search_book_by_category, -> search do
+    joins(:category).where "categories.name like ?", "%#{search}%"
+  end
+  scope :search_book_by_publisher, -> search do
+    joins(:publisher).where "publishers.name like ?", "%#{search}%"
+  end
 end
