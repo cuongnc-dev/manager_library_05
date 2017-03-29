@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => "/ckeditor"
   root "static_pages#homepage"
   get "signup", to: "users#new"
   get "login", to: "sessions#new"

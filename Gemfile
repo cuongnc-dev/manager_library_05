@@ -25,6 +25,7 @@ gem "figaro"
 gem "bootstrap-sass"
 gem "config"
 gem "axlsx_rails"
+gem "ckeditor"
 
 group :development, :test do
   gem "byebug", platform: :mri

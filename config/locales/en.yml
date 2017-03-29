@@ -71,6 +71,8 @@ en:
   export: "Export to excel"
   search_result_alert: "Sorry, no result found"
   stt: "No."
+  admin: "Admin"
+  user: "User"
   activerecord:
     errors:
       models:

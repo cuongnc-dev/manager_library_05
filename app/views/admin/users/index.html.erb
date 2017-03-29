@@ -1,0 +1,34 @@
+<div class="manage">
+  <div class="btn-head">
+    <%= link_to t("users.new_user"), new_admin_user_path, remote: true,
+      class: "btn btn-success btn-new" %>
+    <%= link_to t("export"), admin_users_path(format: :xlsx),
+      class: "btn btn-danger btn-export" %>
+  </div>
+  <div class="list">
+    <div>
+      <strong><%= t "users.list_user" %></strong>
+      <% flash.each do |key, message| %>
+        <span class="alert-<%= key %>"><%= message %></span>
+      <% end %>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="stt"><%= t "stt" %></th>
+          <th class="title"><%= t "name" %></th>
+          <th class="name"><%= t "email" %></th>
+          <th class="name"><%= t "phone" %></th>
+          <th class="name"><%= t "address" %></th>
+          <th class="name"><%= t "role" %></th>
+          <th class="name"><%= t "users.activated" %></th>
+          <th class="image"><%= t "image" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "index", collection: @users, as: :user %>
+      </tbody>
+    </table>
+    <%= will_paginate @users %>
+  </div>
+</div>
