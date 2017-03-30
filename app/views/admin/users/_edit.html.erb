@@ -1,0 +1,79 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">
+        <small><span class="glyphicon glyphicon-remove"></span></small>
+      </button>
+      <h3 class="modal-title"><%= t("users.new_user") %></h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for [:admin, @user], remote: true do |f| %>
+        <div class="col-md-4 picture">
+          <% if @user.errors[:avatar].any? %>
+            <p><span><%= @user.errors[:avatar].first %></span></p>
+          <% end %>
+          <div class="img-avatar bg">
+            <%= image_tag @user.avatar, alt: t("users.image_alt"), id: "thumb" %>
+          </div>
+          <div class="form-group">
+            <div>
+              <%= text_field "", nil, class: "form-control",
+                readonly: true, placeholder: t("users.choose_user_avatar") %>
+              <%= f.file_field :avatar, accept: Settings.type_image_accept,
+                class: "choose-book-img", onchange: "showMyImage(this)" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 info">
+          <% if @user.errors[:name].any? %>
+            <p><%= @user.errors[:name].first %></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.text_field :name, class: "form-control", id: "name",
+              placeholder: t("required") %>
+            <%= f.label :name, t("name"), for: "name" %>
+          </div>
+          <% if @user.errors[:email].any? %>
+            <p><span><%= @user.errors[:email].first %></span></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.text_field :email, class: "form-control", id: "email",
+              placeholder: t("required") %>
+            <%= f.label :email, t("email"), for: "email" %>
+          </div>
+          <% if @user.errors[:phone].any? %>
+            <p><span><%= @user.errors[:phone].first %></span></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.phone_field :phone, class: "form-control", id: "phone",
+              placeholder: t("required") %>
+            <%= f.label :phone, t("phone"), for: "phone" %>
+          </div>
+          <% if @user.errors[:address].any? %>
+            <p><span><%= @user.errors[:address].first %></span></p>
+          <% end %>
+          <div class="form-group has-float-label">
+            <%= f.phone_field :address, class: "form-control", id: "address",
+              placeholder: t("required") %>
+            <%= f.label :address, t("address"), for: "address" %>
+          </div>
+          <div class="button-group">
+            <div>
+              <%= f.label :activated do %>
+                <span><%= t "users.activated" %></span>
+                <%= f.check_box :activated %>
+              <% end %>
+            </div>
+            <div>
+              <%= f.label :is_admin? do %>
+                <span><%= t "admin" %></span>
+                <%= f.check_box :is_admin? %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%= f.submit t("update"), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
