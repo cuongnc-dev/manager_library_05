@@ -3,38 +3,44 @@
     <%= link_to image_tag(Settings.title_logo, alt: t("logo")), admin_root_path %>
   </div>
   <div class="sidebar-wrapper">
-    <ul class="nav">
-      <li class="active">
+    <ul class="nav menu-sidebar">
+      <li class="<%= is_active("admin/books") %>">
         <%= link_to admin_books_path do %>
           <i class="glyphicon glyphicon-book"></i>
           <p><%= t "book" %></p>
         <% end %>
       </li>
-      <li>
+      <li class="<%= is_active("admin/authors") %>">
         <%= link_to admin_authors_path do %>
           <i class="glyphicon glyphicon-print"></i>
           <p><%= t "author" %></p>
         <% end %>
       </li>
-      <li>
+      <li class="<%= is_active("admin/publishers") %>">
         <%= link_to admin_publishers_path do %>
           <i class="glyphicon glyphicon-globe"></i>
           <p><%= t "publisher" %></p>
         <% end %>
       </li>
-      <li>
+      <li class="<%= is_active("admin/categories") %>">
         <%= link_to admin_categories_path do %>
-          <i class="glyphicon glyphicon-th"></i>
+          <i class="glyphicon glyphicon-th-large"></i>
           <p><%= t "category" %></p>
         <% end %>
       </li>
-      <li>
+      <li class="<%= is_active("admin/subcategories") %>">
+        <%= link_to admin_subcategories_path do %>
+          <i class="glyphicon glyphicon-th"></i>
+          <p><%= t "subcategory" %></p>
+        <% end %>
+      </li>
+      <li class="<%= is_active("admin/users") %>">
         <%= link_to admin_users_path do %>
           <i class="glyphicon glyphicon-user"></i>
           <p><%= t "user" %></p>
         <% end %>
       </li>
-      <li>
+      <li class="<%= is_active("admin/requests") %>">
         <%= link_to admin_requests_path do %>
           <i class="glyphicon glyphicon-send"></i>
           <p><%= t "request" %></p>

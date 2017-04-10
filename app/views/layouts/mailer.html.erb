@@ -9,16 +9,17 @@
         border: 2px solid #059;
         border-radius: 10px;
         padding: 20px;
+        overflow: hidden;
       }
       .email p:nth-child(0) {
         font-weight: bold;
         font-style: italic;
       }
-      .email > div {
+      .email > .link {
         text-align: center;
         margin: 30px auto;
       }
-      .email a {
+      .email > .link > a {
         background-color: #009ee2;
         padding: 10px 20px;
         border-color: #2e6da4;
@@ -30,6 +31,45 @@
       }
       .email a:hover {
         background-color: #059;
+      }
+      @media all and (max-width: 768px) {
+        .book-img {
+          width: 100%;
+          margin: 0 !important;
+        }
+        .book-info {
+          width: 100%;
+          text-align: left !important;
+          margin: 0 10px !important;
+        }
+      }
+      @media all and (min-width: 769px) {
+        .book-img {
+          width: 40%;
+          float: left;
+          margin: 0 !important;
+        }
+        .book-info {
+          float: right;
+          width: 55%;
+          text-align: left !important;
+          margin: 0 10px !important;
+        }
+      }
+      .book-img img {
+        width: 100%;
+      }
+      .book-info table tbody tr {
+        vertical-align: middle;
+      }
+      .book-info table tbody tr td p {
+        margin: 0;
+      }
+      .current-user {
+
+      }
+      .comment {
+
       }
     </style>
   </head>
