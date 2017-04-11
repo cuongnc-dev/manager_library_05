@@ -6,8 +6,14 @@ class User < ApplicationRecord
   has_many :following, through: :active_follow_user, source: :followed
   has_many :followers, through: :passive_follow_user, source: :follower
   has_many :requests, dependent: :destroy
+  has_many :rates, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :follow_books, dependent: :destroy
+  has_many :follow_authors, dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token
+
+  mount_uploader :avatar, PictureUploader
 
   before_save :downcase_email
   before_create :create_activation_digest
@@ -18,7 +24,8 @@ class User < ApplicationRecord
     format: {with: VALID_EMAIL_REGEX},
     uniqueness: {case_sensitive: false}
   has_secure_password
-  validates :password, presence: true, length: {minimum: Settings.min_passwd}, allow_nil: true
+  validates :password, presence: true, length: {minimum: Settings.min_passwd},
+    allow_nil: true
 
   def User.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -46,6 +53,8 @@ class User < ApplicationRecord
   end
 
   def activate
+    self.activation_token = User.new_token
+    update_attribute(:activation_digest, User.digest(activation_token))
     update_attribute(:activated, true)
     update_attribute(:activated_at, Time.zone.now)
   end
@@ -76,6 +85,22 @@ class User < ApplicationRecord
     self.activation_token = User.new_token
     update_attribute(:activation_digest, User.digest(activation_token))
     update_attribute(:activation_sent_at, Time.zone.now)
+  end
+
+  scope :list_user_newest, -> {order "created_at desc"}
+  scope :search_user_by_name, -> name {where "name like ?", "%#{name}%"}
+  scope :search_user_by_email, -> email {where "email like ?", "%#{email}%"}
+  scope :search_user_by_role_admin, -> {where "is_admin = 't'"}
+  scope :search_user_by_role_user, -> {where "is_admin = 'f'"}
+  scope :search_user_by_activated, -> {where "activated = 't'"}
+  scope :search_user_by_not_activate, -> {where "activated = 'f'"}
+  scope :list_users_follow_author, -> author_id do
+    joins(:follow_authors).select("users.*").
+      where "follow_authors.author_id = ?", "#{author_id}"
+  end
+  scope :list_users_follow_book, -> book_id, email do
+    joins(:follow_books).select("users.*").
+      where "follow_books.book_id = ? and users.email <> ?", "#{book_id}", "#{email}"
   end
 
   private

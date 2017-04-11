@@ -11,10 +11,15 @@ class Author < ApplicationRecord
   validates :phone, presence: true, length: {maximum: Settings.max_phone}
   validates :address, presence: true
   validates :publisher_id, presence: true
-  validates :avatar, presence: true
 
   delegate :name, to: :publisher, prefix: true
+  delegate :name, to: :category, prefix: true
 
-  scope :list_newest_author, -> {order created_at: :desc}
+  scope :list_authors_newest_, -> {order "created_at desc"}
+  scope :list_authors_order_name, -> {order "name"}
   scope :search_author_by_name, -> name {where "name like ?", "%#{name}%"}
+  scope :search_author_by_publisher, -> name do
+    joins(:publisher).select("authors.*").where "publishers.name like ?", "%#{name}%"
+  end
+  scope :search_author_by_email, -> email {where "email like ?", "%#{name}%"}
 end

@@ -7,8 +7,9 @@ class Publisher < ApplicationRecord
   validates :email, presence: true
   validates :phone, presence: true, length: {maximum: Settings.max_phone}
   validates :address, presence: true
-  validates :image, presence: true
 
-  scope :list_newest_publisher, -> {order created_at: :desc}
-  scope :search_publisher_by_namee, -> name {where "name like ?", "%#{name}%"}
+  scope :list_publisher_newest, -> {order "created_at desc"}
+  scope :list_publisher_order_name, -> {order "name"}
+  scope :search_publisher_by_name, -> name {where "name like ?", "%#{name}%"}
+  scope :search_publisher_by_email, -> email {where "email like ?", "%#{email}%"}
 end

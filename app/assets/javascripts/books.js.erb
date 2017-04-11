@@ -1,0 +1,297 @@
+$(document).ready(function(){
+  var id, timer, left, top, comment_id, not_rate;
+  var height = $(window).height();
+  var width = $(window).width();
+  $(document).on('mousemove', function(e){
+    left = e.clientX;
+    top = e.clientY ;
+  });
+  $('.list-book .row .item').hover(function(e){
+    id = $(this).attr('id');
+    timer = setTimeout(function(){
+      if (top < (height / 2)) {
+        if (left < (width / 2)) {
+          $('.' + id).css({'top': top + 15, 'left': left + 15}).fadeIn();
+        } else {
+          $('.' + id).css({'top': top + 15, 'right': width - left + 15}).fadeIn();
+        }
+      } else {
+        if (left < (width / 2)){
+          $('.' + id).css({'bottom': height - top + 15, 'left': left + 15}).fadeIn();
+        } else {
+          $('.' + id).css({'bottom': height - top + 15,
+            'right': width - left + 15}).fadeIn();
+        }
+      }
+    }, 1000);
+  }, function(){
+    clearTimeout(timer);
+    $('.' + id).fadeOut();
+  });
+  function showComment(){
+    $('.edit-comment').parent().css('visibility', '');
+    $('p.list-group-item-text').show();
+    $('div.list-group-item-text').hide();
+  }
+  function showUpdateCommentNotify(type){
+    var i18;
+    if (type = 'success') {
+      i18 = '<%= I18n.t("comments.update_success") %>'
+    } else {
+      i18 = '<%= I18n.t("comments.update_warning") %>'
+    }
+    $('span.update-message.' + comment_id).addClass('alert-' + type);
+    $('span.update-message.' + comment_id).html(i18);
+    $('span.time.' + comment_id).hide();
+    $('span.update-message.' + comment_id).fadeIn();
+    setTimeout(function(){
+      $('span.time.' + comment_id).show();
+      $('span.update-message.' + comment_id).fadeOut();
+      $('span.update-message.' + comment_id).removeClass('alert-' + type);
+    }, 2500);
+  };
+  $(document).on('click', '.transparent, .details-close', function(){
+    $('.book-detail').animate({left: '100%'});
+  });
+  $(document).on('focus', 'textarea#content', function(){
+    showComment();
+  });
+  $(document).on('click', '.edit-comment', function(){
+    var value = $('p.' + comment_id).html();
+    $('div.' + comment_id + ' div').html(value);
+    comment_id = $(this).attr('id');
+    showComment();
+    $('p.' + comment_id).hide();
+    $('div.' + comment_id).show();
+    $(this).parent().css('visibility', 'hidden');
+  });
+  $(document).on('click', '.button-edit-comment', function(){
+    var value = $('div.' + comment_id + ' div').html();
+    var url = '/comments/' + comment_id;
+    var updated_at = $.now();
+    if (value.length >= 10) {
+      $.ajax({
+        url: url,
+        type: 'patch',
+        data: {comment: {content: value, updated_at: updated_at}},
+        dataType: 'json',
+        success: function(result){
+          if (result.update_status) {
+            $('p.' + comment_id).html(value);
+            showComment();
+            showUpdateCommentNotify('success');
+          } else {
+            showUpdateCommentNotify('warning');
+          };
+        },
+        error: function(){
+          showUpdateCommentNotify('warning');
+        }
+      });
+    };
+  });
+  $(document).on('click', '.edit-rating', function(){
+    not_rate = $('#rating-book').val();
+    $('.rating-book .rating-input').fadeToggle();
+    $(this).tooltip('hide');
+  });
+  $(document).on('mouseover', '.edit-rating', function(){
+    if($('.rating-book .rating-input').is(':visible')){
+      $(this).tooltip('hide');
+    } else {
+      $(this).tooltip('show');
+    }
+  });
+  $(document).on('mouseout', '.edit-rating', function(){
+    $(this).tooltip('hide');
+  });
+  $(function(){
+    $(document).on('change', '#rating-book', function(){
+      var rate_value = $(this).val();
+      var url, type, data;
+      var book_id = $('.details-body').attr('id');
+      var user_id = $('.details-info').attr('id');
+      var rate_id = $('.edit-rating').attr('id');
+      if (not_rate == 0){
+        url = '/rates';
+        type = 'post'
+      } else {
+        url = '/rates/' + rate_id;
+        type = 'patch';
+      }
+      $.ajax({
+        url: url,
+        type: type,
+        data: {rate: {user_id: user_id, book_id: book_id, rates: rate_value}},
+        dataType: 'json',
+        success: function(result){
+          if (result.rating_status){
+            $('.rating-book .rating-input').hide();
+            $('.rated').fadeIn();
+            setTimeout(function(){
+              $('.rated').fadeOut();
+            }, 2000);
+            $('.edit-rating').attr('id', result.rate_id);
+          } else {
+            $('.rating-book .rating-input').hide();
+            $('.rated-error').fadeIn();
+            setTimeout(function(){
+              $('.rated-error').fadeOut();
+            }, 2000);
+          };
+        },
+        error: function(){
+          $('.rating-book .rating-input').hide();
+          $('.rated-error').fadeIn();
+          setTimeout(function(){
+            $('.rated-error').fadeOut();
+          }, 2000);
+        }
+      });
+    });
+  });
+  $(document).on('click', '#like-unlike', function(){
+    var url, type;
+    var book_id = $('.details-body').attr('id');
+    var user_id = $('.details-info').attr('id');
+    var like_id = $('.like-unlike').attr('id');
+    var destroy = false;
+    if ($(this).hasClass('like')){
+      url = '/likes/' + like_id;
+      type = 'delete';
+      destroy = true;
+    } else {
+      url = '/likes';
+      type = 'post'
+      destroy = false;
+    }
+    $.ajax({
+      url: url,
+      type: type,
+      data: {like: {user_id: user_id, book_id: book_id}},
+      dataType: 'json',
+      success: function(result){
+        if (result.like_status){
+          if (destroy){
+            $('.like-unlike').html('<span class="total-like">'
+              + result.total_like + ' <%= I18n.t("people_like_this_book") %></span>'
+              + '<span id="like-unlike" class="glyphicon glyphicon-thumbs-up unlike"'
+              + 'data-toggle="tooltip" data-placement="left"'
+              + 'data-title="<%= I18n.t("like_this_book") %>"></span>');
+          } else {
+            $('.like-unlike').html('<span class="total-like">'
+              + result.total_like + ' <%= I18n.t("people_like_this_book") %></span>'
+              + '<span id="like-unlike" class="glyphicon glyphicon-thumbs-up like"'
+              + 'data-toggle="tooltip" data-placement="left"'
+              + 'data-title="<%= I18n.t("unlike_this_book") %>"></span>');
+          }
+          $('.like-unlike').attr('id', result.like_id);
+        }
+      }
+    });
+  });
+  $(document).on('mouseover', '#like-unlike', function(){
+    $(this).tooltip('show');
+  });
+  $(document).on('mouseout', '#like-unlike', function(){
+    $(this).tooltip('hide');
+  });
+  $(document).on('click', '.follow-book', function(){
+    var url, type;
+    var book_id = $('.details-body').attr('id');
+    var user_id = $('.details-info').attr('id');
+    var follow_id = $('.borrow-follow-book').attr('id');
+    var destroy = false;
+    if ($(this).hasClass('destroy')){
+      url = '/follow_books/' + follow_id;
+      type = 'delete';
+      destroy = true;
+    } else {
+      url = '/follow_books';
+      type = 'post'
+      destroy = false;
+    }
+    $.ajax({
+      url: url,
+      type: type,
+      data: {follow_book: {user_id: user_id, book_id: book_id}},
+      dataType: 'json',
+      success: function(result){
+        if (result.follow_status){
+          if (destroy){
+            $('.follow-book').removeClass('btn-success destroy').addClass('btn-default create');
+            $('.follow-book').html('<i class="glyphicon glyphicon-check"></i>'
+              + ' <%= I18n.t("follow") %>');
+          } else {
+            $('.follow-book').removeClass('btn-default create').addClass('btn-success destroy');
+            $('.follow-book').html('<i class="glyphicon glyphicon-ok"></i>'
+              + ' <%=I18n.t("following") %>');
+          }
+          $('.borrow-follow-book').attr('id', result.follow_id);
+        }
+      }
+    });
+  });
+  $(document).on('mouseover', '.follow-book.destroy', function(){
+    $('.follow-book').removeClass('btn-success').addClass('btn-default');
+    $('.follow-book').html('<i class="glyphicon glyphicon-remove"></i>'
+      + ' <%= I18n.t("unfollow") %>');
+  });
+  $(document).on('mouseout', '.follow-book.destroy', function(){
+    $('.follow-book').removeClass('btn-default').addClass('btn-success');
+    $('.follow-book').html('<i class="glyphicon glyphicon-ok"></i>'
+      + ' <%=I18n.t("following") %>');
+  });
+  $(document).on('click', '.follow-author', function(){
+    var url, type;
+    var user_id = $(this).attr('id');
+    var author_id = $('.author-detail').attr('id');
+    var follow_id = $('.author-info').attr('id');
+    var destroy = false;
+    if ($(this).hasClass('destroy')){
+      url = '/follow_authors/' + follow_id;
+      type = 'delete';
+      destroy = true;
+    } else {
+      url = '/follow_authors';
+      type = 'post'
+      destroy = false;
+    }
+    $.ajax({
+      url: url,
+      type: type,
+      data: {follow_author: {user_id: user_id, author_id: author_id}},
+      dataType: 'json',
+      success: function(result){
+        if (result.follow_status){
+          if (destroy){
+            $('.follow-author').removeClass('btn-success destroy').
+              addClass('btn-default create');
+            $('.total-follow').html(result.total_follow
+              + ' <%= I18n.t("people_follow") %>');
+            $('.follow-author').html('<i class="glyphicon glyphicon-check"></i>'
+              + ' <%= I18n.t("follow") %>');
+          } else {
+            $('.follow-author').removeClass('btn-default create').
+              addClass('btn-success destroy');
+            $('.total-follow').html(result.total_follow
+              + ' <%= I18n.t("people_follow") %>');
+            $('.follow-author').html('<i class="glyphicon glyphicon-ok"></i>'
+              + ' <%=I18n.t("following") %>');
+          }
+          $('.author-info').attr('id', result.follow_id);
+        }
+      }
+    });
+  });
+  $(document).on('mouseover', '.follow-author.destroy', function(){
+    $('.follow-author').removeClass('btn-success').addClass('btn-default');
+    $('.follow-author').html('<i class="glyphicon glyphicon-remove"></i>'
+      + ' <%= I18n.t("unfollow") %>');
+  });
+  $(document).on('mouseout', '.follow-author.destroy', function(){
+    $('.follow-author').removeClass('btn-default').addClass('btn-success');
+    $('.follow-author').html('<i class="glyphicon glyphicon-ok"></i>'
+      + ' <%=I18n.t("following") %>');
+  });
+});
