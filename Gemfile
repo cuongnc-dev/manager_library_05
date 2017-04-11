@@ -26,6 +26,7 @@ gem "bootstrap-sass"
 gem "config"
 gem "axlsx_rails"
 gem "ckeditor"
+gem "whenever", require: false
 
 group :development, :test do
   gem "byebug", platform: :mri

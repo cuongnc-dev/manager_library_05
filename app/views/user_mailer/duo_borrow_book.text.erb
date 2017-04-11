@@ -1,0 +1,10 @@
+<%= t("hi") + " " + @user.name %>,
+
+<%= t "end_time_notification_body" %>
+<% @requests.each do |request| %>
+  <%= t("book") + ": " + request.book_title %>
+  <%= t("start_day") + ": " + request.start_day %>
+  <%= t("end_day") + ": " + request.end_day %>
+  <%= t("message") + ": " + request.content %>
+<% end %>
+<%= link_to t("view_all_request"), requests_url %>

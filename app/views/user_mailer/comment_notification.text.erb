@@ -1,0 +1,7 @@
+<%= t("hi") + " " + @user.name %>,
+
+<%= t("book") + " " %>
+<%= link_to @comment.book_title, book_url(@comment.book_id) %>
+<%= t("email_new_comment_body") %>
+
+<%= @current_user.name + ": " + @comment.content %>

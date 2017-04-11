@@ -13,8 +13,26 @@ class Admin::BooksController < ApplicationController
   end
 
   def index
-    @books = Book.list_newest_book.paginate page: params[:page],
-      per_page: Settings.per_page
+    case
+    when params[:key]
+      case
+      when params[:find_by] == Book.name
+        @books = Book.search_book_by_title(params[:key]).list_book_newest.
+          paginate page: params[:page], per_page: Settings.per_page
+      when params[:find_by] == Author.name
+        @books = Book.search_book_by_author(params[:key]).list_book_newest.
+          paginate page: params[:page], per_page: Settings.per_page
+      when params[:find_by] == Subcategory.name
+        @books = Book.search_book_by_subcategory(params[:key]).
+          list_book_newest.paginate page: params[:page], per_page: Settings.per_page
+      else
+        @books = Book.search_book_by_publisher(params[:key]).
+          list_book_newest.paginate page: params[:page], per_page: Settings.per_page
+      end
+    else
+      @books = Book.list_book_newest.paginate page: params[:page],
+        per_page: Settings.per_page
+    end
     respond_to do |format|
       format.html
       format.xlsx
@@ -24,6 +42,8 @@ class Admin::BooksController < ApplicationController
   def create
     @book = Book.new book_params
     if @book.save
+      @users_follow = User.list_users_follow_author @book.author_id
+      @book.send_notification_email(@users_follow, @book) if @users_follow.present?
       flash[:success] = t "books.add_book_success"
       redirect_to admin_books_url
     else
@@ -57,24 +77,24 @@ class Admin::BooksController < ApplicationController
   def load_book
     @book = Book.find_by id: params[:id]
     return if @book
-    flash[:warning] = t "book.book_not_found"
+    flash[:warning] = t "books.book_not_found"
     redirect_to admin_books_url
   end
 
   def load_category
-    @categories = Category.all
+    @categories = Subcategory.list_subcategory_order_name
   end
 
   def load_author
-    @authors = Author.all
+    @authors = Author.list_author_order_name
   end
 
   def load_publisher
-    @publishers = Publisher.all
+    @publishers = Publisher.list_publisher_order_name
   end
 
   def book_params
     params.require(:book).permit :title, :image, :description, :author_id,
-      :category_id, :publisher_id, :current, :page_number
+      :subcategory_id, :publisher_id, :current, :page_number
   end
 end

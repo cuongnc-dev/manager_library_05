@@ -15,8 +15,8 @@ class Author < ApplicationRecord
   delegate :name, to: :publisher, prefix: true
   delegate :name, to: :category, prefix: true
 
-  scope :list_authors_newest_, -> {order "created_at desc"}
-  scope :list_authors_order_name, -> {order "name"}
+  scope :list_author_newest, -> {order "created_at desc"}
+  scope :list_author_order_name, -> {order "name"}
   scope :search_author_by_name, -> name {where "name like ?", "%#{name}%"}
   scope :search_author_by_publisher, -> name do
     joins(:publisher).select("authors.*").where "publishers.name like ?", "%#{name}%"

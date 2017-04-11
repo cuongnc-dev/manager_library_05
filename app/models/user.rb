@@ -102,6 +102,9 @@ class User < ApplicationRecord
     joins(:follow_books).select("users.*").
       where "follow_books.book_id = ? and users.email <> ?", "#{book_id}", "#{email}"
   end
+  scope :list_user_duo_borrow_book, -> do
+    joins(:requests).where "requests.end_day = ?", Date.today
+  end
 
   private
 

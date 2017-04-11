@@ -1,0 +1,14 @@
+<div class="email">
+  <p><%= t("hi") + " " + @user.name %>,</p>
+  <p><%= t "end_time_notification_body" %></p>
+  <p><%= t "view_your_request" %></p>
+  <% @requests.each do |request| %>
+    <div class="col-md-6">
+      <p><%= t("book") + ": " + request.book_title %></p>
+      <p><%= t("start_day") + ": " + request.start_day.strftime("%d/%m/%Y") %></p>
+      <p><%= t("end_day") + ": " + request.end_day.strftime("%d/%m/%Y") %></p>
+      <p><%= t("message") + ": " + request.content %></p>
+    </div>
+  <% end %>
+  <p><%= t "view_all_request" %> <%= link_to t("my_requests"), requests_url %></p>
+</div>

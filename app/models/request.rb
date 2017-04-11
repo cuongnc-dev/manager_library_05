@@ -8,7 +8,7 @@ class Request < ApplicationRecord
   delegate :email, to: :user, prefix: true
   delegate :id, :title, :current, :image, to: :book, prefix: true
 
-  scope :list_newest, -> {order created_at: :desc}
+  scope :list_request_newest, -> {order created_at: :desc}
   scope :list_request_by_user, -> id do
     joins(:user).select("requests.*").where "users.id = ?", "#{id}"
   end
@@ -30,4 +30,7 @@ class Request < ApplicationRecord
     where "start_day >= ? and end_day <= ?", "#{start_day}", "#{end_day}"
   end
   scope :search_request_by_status, -> status {where status: status}
+  scope :search_request_by_user_end_day, -> user_id do
+    where "user_id = ? and end_day = ?", "#{user_id}", Date.today
+  end
 end

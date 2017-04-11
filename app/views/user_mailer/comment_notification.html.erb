@@ -1,0 +1,8 @@
+<div class="email">
+  <p><%= t("hi") + " " + @user.name %>,</p>
+  <p><%= t("book") + " " %>
+    <%= link_to @comment.book_title, book_url(@comment.book_id) %>
+    <%= t("email_new_comment_body") %></p>
+  <p class="current-user"><%= @current_user.name + ": " %></p>
+  <p class="comment"><%= @comment.content %></p>
+</div>

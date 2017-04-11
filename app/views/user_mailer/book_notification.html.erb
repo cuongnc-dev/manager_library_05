@@ -1,0 +1,38 @@
+<div class="email">
+  <p><%= t("hi") + " " + @user.name %>,</p>
+  <p><%= t("author") + " " + @book.author_name %>
+    <%= t("email_notification_body1") %></p>
+  <p><%= t "email_notification_body2" %></p>
+  <div class="book-img">
+    <%= link_to image_tag(@book.image, alt: t("books.image_alt")),
+      book_url(@book) %>
+  </div>
+  <div class="book-info">
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th><%= t("books.title") + ":" %></th>
+          <td><%= @book.title %></td>
+        </tr>
+        <tr>
+          <th><%= t("category") + ":" %></th>
+          <td><%= @book.subcategory_name %></td>
+        </tr>
+        <tr>
+          <th><%= t("publisher") + ":" %></th>
+          <td><%= @book.publisher_name %></td>
+        </tr>
+        <tr>
+          <th><%= t("books.page_number") + ":" %></th>
+          <td><%= @book.page_number %></td>
+        </tr>
+        <tr>
+          <th><%= t("books.description") + ":" %></th>
+          <td>
+            <%= raw @book.description.truncate(Settings.info_description_limit) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
